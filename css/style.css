@@ -1,273 +1,290 @@
 @import url("https://use.fontawesome.com/releases/v5.6.3/css/all.css");
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700|Rubik:400,700,900');
-
-body{
-  overflow-x: hidden;
+body {
+    overflow-x: hidden;
 }
 
-.row.page:not(.page-active){
-  display: none;
+.row.page:not(.page-active) {
+    display: none;
 }
 
-.page-active{
-  display: flex;
+.page-active {
+    display: flex;
 }
 
-
-input[type="text"],input[type="password"],input[type="email"] {
-	margin-bottom: 1em;
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    margin-bottom: 1em;
 }
+
 
 /*Radio Button*/
-.btn.btn-sm:hover{
-  background-color: #E3451E;
-  color: white;
-}
 
-button:disabled{
-  background-color: grey;
-  border-color: grey;
-  color: white;
-}
-
-button:disabled:hover{
- background-color: grey;
-  border-color: grey; 
-  color: white;
-  cursor: unset;
-}
-
-.container-checkmark {
-  display: block;
-  position: relative;
-  margin-bottom: 12px;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-/* Hide the browser's default radio button */
-.container-checkmark input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-}
-
-/* Create a custom radio button */
-.checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin-right: 0.5em;
-  height: 25px;
-  width: 25px;
-  background-color: #eee;
-  border-radius: 50%;
-  display: inline-block;
-}
-
-/* On mouse-over, add a grey background color */
-.container-checkmark:hover input ~ .checkmark {
-  background-color: #ccc;
-}
-
-/* When the radio button is checked, add a blue background */
-.container-checkmark input:checked ~ .checkmark {
-  background-color: #e3451e;
-}
-
-/* Create the indicator (the dot/circle - hidden when not checked) */
-.checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-/* Show the indicator (dot/circle) when checked */
-.container-checkmark input:checked ~ .checkmark:after {
-  display: block;
-}
-
-/* Style the indicator (dot/circle) */
-.container-checkmark .checkmark:after {
-  top: 9px;
-  left: 9px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: white;
-}
-
-
-table{
-  background-color: white!important;
-}
-
-td a:hover{
-  background-color: unset!important;
-}
-
-section{
-  transition: ease .3s;
-}
-
-.sidebar{
-  position: fixed!important;
-  display: inline-block;
-  top: 0px;
-  padding: .5em;
-  z-index: 15;
-  background-color: grey;
-  }*/
-
-  .btn.btn-sm:hover{
+.btn.btn-sm:hover {
     background-color: #E3451E;
     color: white;
-  }
+}
 
-  button:disabled, .button:disabled{
+button:disabled {
     background-color: grey;
     border-color: grey;
     color: white;
-  }
-
-  button:disabled:hover, .button:disabled:hover{
-   background-color: grey;
-   border-color: grey; 
-   color: white;
-   cursor: unset;
- }
-
- .row{
-  margin-bottom: 2em;
 }
 
-input[type="radio"]{
-  width: inherit;
+button:disabled:hover {
+    background-color: grey;
+    border-color: grey;
+    color: white;
+    cursor: unset;
+}
+
+.container-checkmark {
+    display: block;
+    position: relative;
+    margin-bottom: 12px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+/* Hide the browser's default radio button */
+
+.container-checkmark input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+
+/* Create a custom radio button */
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-right: 0.5em;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+
+/* On mouse-over, add a grey background color */
+
+.container-checkmark:hover input~.checkmark {
+    background-color: #ccc;
+}
+
+
+/* When the radio button is checked, add a blue background */
+
+.container-checkmark input:checked~.checkmark {
+    background-color: #e3451e;
+}
+
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+
+/* Show the indicator (dot/circle) when checked */
+
+.container-checkmark input:checked~.checkmark:after {
+    display: block;
+}
+
+
+/* Style the indicator (dot/circle) */
+
+.container-checkmark .checkmark:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
+
+table {
+    background-color: white!important;
+}
+
+td a:hover {
+    background-color: unset!important;
+}
+
+section {
+    transition: ease .3s;
+}
+
+.sidebar {
+    position: fixed!important;
+    display: inline-block;
+    top: 0px;
+    padding: .5em;
+    z-index: 15;
+    background-color: grey;
+}
+
+*/ .btn.btn-sm:hover {
+    background-color: #E3451E;
+    color: white;
+}
+
+button:disabled,
+.button:disabled {
+    background-color: grey;
+    border-color: grey;
+    color: white;
+}
+
+button:disabled:hover,
+.button:disabled:hover {
+    background-color: grey;
+    border-color: grey;
+    color: white;
+    cursor: unset;
+}
+
+.row {
+    margin-bottom: 2em;
+}
+
+input[type="radio"] {
+    width: inherit;
 }
 
 form span {
-	padding-bottom: 1em;
+    padding-bottom: 1em;
 }
 
-button,.button {
-  background: #e3451e none repeat scroll 0 0;
-  border: 2px solid #e3451e;
-  color: #fff;
-  display: inline-block;
-  font-family: rubik;
-  font-weight: 500;
-  letter-spacing: 4px;
-  line-height: 1;
-  padding: 14px 30px;
-  text-transform: uppercase;
-  width: auto;
-  transition: ease .3s;
+button,
+.button {
+    background: #e3451e none repeat scroll 0 0;
+    border: 2px solid #e3451e;
+    color: #fff;
+    display: inline-block;
+    font-family: rubik;
+    font-weight: 500;
+    letter-spacing: 4px;
+    line-height: 1;
+    padding: 14px 30px;
+    text-transform: uppercase;
+    width: auto;
+    transition: ease .3s;
 }
 
-button:hover,.button:hover{
-	background: white;
-	color: #e3451e;
-  cursor: pointer;
+button:hover,
+.button:hover {
+    background: white;
+    color: #e3451e;
+    cursor: pointer;
 }
 
-.card{
-  border-radius: 0px!important;
+.card {
+    border-radius: 0px!important;
 }
 
-#wp-calendar{
-  min-width: 50%!important;
-  max-width: 75%!important;
-  min-height: 100%!important;
+#wp-calendar {
+    min-width: 50%!important;
+    max-width: 75%!important;
+    min-height: 100%!important;
 }
 
-#answer li{
-  /*list-style-type: none;*/
+#answer .col-md-4 {
+    padding: 1.3em;
 }
 
-#answer .col-md-4{
-  padding: 1.3em;
-}
-
-#submit{
-  position: fixed;
-  width: 100%;
-  bottom: 0px;
-  border-top: 1px solid rgba(0,0,0,.125);
+#submit {
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+    border-top: 1px solid rgba(0, 0, 0, .125);
 }
 
 #graph3.line-subtext::before {
-  background: #7CB7F2 none repeat scroll 0 0!important;
+    background: #7CB7F2 none repeat scroll 0 0!important;
 }
 
-canvas{
-  margin-bottom: 1em;
+canvas {
+    margin-bottom: 1em;
 }
 
 #graph1.line-subtext::before {
-  background: #E3451E none repeat scroll 0 0!important;
+    background: #E3451E none repeat scroll 0 0!important;
 }
 
 #graph2.line-subtext::before {
-  background: green none repeat scroll 0 0!important;
+    background: green none repeat scroll 0 0!important;
 }
 
-#toggler.show{
-  position: fixed;
-  top: 0.5em;
-  left: 7.5em;
-  z-index: 999;
-  transition: 0.5s;
+#toggler.show {
+    position: fixed;
+    top: 0.5em;
+    left: 7.5em;
+    z-index: 999;
+    transition: 0.5s;
 }
 
-#toggler.hide{
-  left: 1em;
+#toggler.hide {
+    left: 1em;
 }
 
-@media (max-width: 500px){
-  #toggler.hide{}
-}
 
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-.row.content {height: 550px}
+
+.row.content {
+    height: 550px
+}
+
 
 /* Set gray background color and 100% height */
+
 .sidenav {
-  background-color: #f1f1f1;
-  height: 100%;
+    background-color: #f1f1f1;
+    height: 100%;
 }
 
-.disabled{
-  
-}
 
 /* On small screens, set height to 'auto' for the grid */
+
 @media screen and (max-width: 767px) {
-  .row.content {height: auto;} 
+    .row.content {
+        height: auto;
+    }
 }
 
-#navbar{
-  height: 100%;
+#navbar {
+    height: 100%;
 }
 
-label.error{
-  float: right;
-  margin-right: 25px;
-  margin-left: -25px;
-  margin-top: -58px;
-  position: relative;
-  z-index: 2;
-  color: #e3451e;
+label.error {
+    float: right;
+    margin-right: 25px;
+    margin-left: -25px;
+    margin-top: -58px;
+    position: relative;
+    z-index: 2;
+    color: #e3451e;
 }
 
-label.container-checkmark>label.error{
-  visibility: hidden;
+label.container-checkmark>label.error {
+    visibility: hidden;
 }
 
-.nav-item{
-  list-style: none;
+.nav-item {
+    list-style: none;
 }
