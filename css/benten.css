@@ -2100,9 +2100,11 @@ textarea {
         font-size: 50px;
         letter-spacing: 2px;
     }
+
     #form-wrapper {
         margin-bottom: 40px;
     }
+
     .logo,
     .is-sticky .logo,
     .blog-header .logo {
@@ -2110,6 +2112,7 @@ textarea {
         float: left;
         max-width: 50%;
     }
+
     .footer,
     .footer-icon {
         text-align: center;
@@ -2120,12 +2123,14 @@ textarea {
     .admin-bar .for-sticky {
         margin-top: 0;
     }
+
     .admin-bar .is-sticky .for-sticky {
         margin-top: 46px;
     }
 }
 
 @media (max-width: 767px) {
+
     .logo,
     .is-sticky .logo,
     .blog-header .logo {
@@ -2133,16 +2138,19 @@ textarea {
         float: left;
         max-width: 50%;
     }
+
     .admin-bar .blog-header,
     .admin-bar .header {
         margin-top: 0;
     }
+
     .admin-bar .for-sticky {
         margin-top: 46px;
     }
 }
 
 @media (max-width: 600px) {
+
     .bottom-slide,
     .top-slide::before,
     .top-slide::after,
@@ -2150,36 +2158,44 @@ textarea {
     .top-title::before {
         display: none;
     }
+
     .caption-box h3 {
         font-size: 40px;
         letter-spacing: 1px;
     }
+
     .top-text {
         font-size: 17px;
     }
+
     .top-title {
         font-size: 15px;
         letter-spacing: 1px;
         margin-bottom: 0;
     }
+
     .content-title {
         font-size: 32px;
     }
+
     .port-filter>li:first-child,
     .port-filter>li {
         float: none;
     }
+
     .nav-box,
     .blog-header,
     .footer .container {
         width: 100%;
     }
+
     .admin-bar .is-sticky .for-sticky {
         margin-top: 0;
     }
 }
 
 @media (max-width: 500px) {
+
     .logo,
     .is-sticky .logo,
     .blog-header .logo {
