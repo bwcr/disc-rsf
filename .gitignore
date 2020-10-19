@@ -5,3 +5,5 @@ admin-update.php
 addanswer.php
 js/disc.js
 admin/node_modules
+# css/benten.css
+node_modules/
