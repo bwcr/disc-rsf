@@ -1,6 +1,7 @@
-Email
-vendor
-image
+Email/
+vendor/
+image/
 admin-update.php
 addanswer.php
 js/disc.js
+admin/node_modules
