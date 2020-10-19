@@ -1,4 +1,5 @@
 <?php
+if(isset($_POST)){
     require_once('connection.php');
     $title = $_POST['title'];
     $list1 = $_POST['list1'];
@@ -15,11 +16,8 @@
     $list12 = $_POST['list12'];
     $jobs = $_POST['jobs'];
     $paragraph = $_POST['paragraph'];
-print_r($_POST);
 
-if(isset($_POST)){
-    echo("oke");
-$insert = $koneksi->query("INSERT INTO `results` (`title`, `list1`, `list2`, `list3`, `list4`, `list5`, `list6`, `list7`, `list8`, `list9`, `list10`, `list11`, `list12`, `jobs`, `paragraph`) VALUES ('$title', '$list1', '$list2', '$list3', '$list4', '$list5', '$list6', '$list7', '$list8', '$list9', '$list10', '$list11', '$list12', '$jobs', '$paragraph')");
+    $insert = $koneksi->query("INSERT INTO `results` (`title`, `list1`, `list2`, `list3`, `list4`, `list5`, `list6`, `list7`, `list8`, `list9`, `list10`, `list11`, `list12`, `jobs`, `paragraph`) VALUES ('$title', '$list1', '$list2', '$list3', '$list4', '$list5', '$list6', '$list7', '$list8', '$list9', '$list10', '$list11', '$list12', '$jobs', '$paragraph')");
 }
 
 ?>

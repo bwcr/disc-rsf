@@ -9,11 +9,12 @@ require_once('../connection.php');
    ;
 // $session_password = $_SESSION['password_admin'];
 // $id = $_GET['id'];
-
-$usernameMitra = $_POST['username'];
-$passwordMitra = $_POST['password'];
-$emailMitra = $_POST['email'];
-$namaMitra = $_POST['mitra'];
+if (isset($_POST)) {
+	$usernameMitra = $_POST['username'];
+	$passwordMitra = $_POST['password'];
+	$emailMitra = $_POST['email'];
+	$namaMitra = $_POST['mitra'];
+}
 
 // if($_GET == NULL){
 // 	alert('Terjadi kesalahan');
