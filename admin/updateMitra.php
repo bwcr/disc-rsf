@@ -2,14 +2,8 @@
 session_start();
 
 require_once('../connection.php');
-
-// $username = $_POST['username'];
-// $password = $_POST['password'];
-// $session_username = $_SESSION['username_admin']
-   ;
-// $session_password = $_SESSION['password_admin'];
+if(isset($_GET['id'], $_POST['username'], $_POST['password'], $_POST['email'], $_POST['mitra']))
 $id = $_GET['id'];
-
 $usernameMitra = $_POST['username'];
 $passwordMitra = md5($_POST['password']);
 $emailMitra = $_POST['email'];

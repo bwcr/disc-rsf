@@ -2023,7 +2023,7 @@ elseif(isset($_GET['id']) && !isset($_POST[''])){
 <!-- <button type="submit">SUBMIT</button> -->
 </div>
 <?php
-if (isset($_POST) && !isset($_GET['id'])) { ?>
+if (isset($_POST['namaDepan'], $_POST['usia'], $_POST['gender'], $_POST['email']) && !isset($_GET['id'])) { ?>
 	<input type="hidden" name="nama" value="<?= $_POST["namaDepan"]?> <?= $_POST["namaBelakang"] ?>">
 	<input type="hidden" name="usia" value="'<?= $_POST["usia"]?>">
 	<input type="hidden" name="gender" value="<?= $_POST["gender"] ?>">

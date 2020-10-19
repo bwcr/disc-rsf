@@ -2,19 +2,17 @@
 session_start();
 
 require_once('../connection.php');
-
-// $username = $_POST['username'];
-// $password = $_POST['password'];
-$session_username = $_SESSION['username_admin'];
-$session_password = $_SESSION['password_admin'];
+if(isset($_SESSION['username_admin']) && isset($_SESSION['password_admin'])){
+	$session_username = $_SESSION['username_admin'];
+	$session_password = $_SESSION['password_admin'];
+}
 
 // if($_GET == NULL){
 // 	alert('Terjadi kesalahan');
 // 	header("Location: mitra.php");
 
-if(isset($_SESSION['username_admin']
-) && isset($_SESSION['password_admin'])){
-	if(isset($_POST['password'])){
+if(isset($session_username) && isset($session_password)){
+	if(isset($_POST['password'], $_POST['newPassword'], $_POST['confirmPassword'])){
 		$password = md5($_POST['password']);
 		$newPassword = md5($_POST['newPassword']);
 		$confirmPassword = md5($_POST['confirmPassword']);

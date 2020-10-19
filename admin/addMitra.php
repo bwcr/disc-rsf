@@ -9,20 +9,14 @@ require_once('../connection.php');
    ;
 // $session_password = $_SESSION['password_admin'];
 // $id = $_GET['id'];
-if (isset($_POST)) {
+if (isset($_POST['username'], $_POST['password'], $_POST['email'], $_POST['mitra'])) {
 	$usernameMitra = $_POST['username'];
 	$passwordMitra = $_POST['password'];
 	$emailMitra = $_POST['email'];
 	$namaMitra = $_POST['mitra'];
 }
 
-// if($_GET == NULL){
-// 	alert('Terjadi kesalahan');
-// 	header("Location: mitra.php");
-// }
-
-if(isset($_SESSION['username_admin']
-   ) && isset($_SESSION['password_admin'])){
+if(isset($_SESSION['username_admin']) && isset($_SESSION['password_admin'])){
 	$select = $koneksi->query("SELECT * FROM `mitra` WHERE `username` = '$usernameMitra' OR `email` = '$emailMitra'");
 	if ($select->num_rows > 0) {
 		$_SESSION['alert-failure'] = "Username atau Email telah digunakan, silahkan dicek kembali";
@@ -468,7 +462,7 @@ if(isset($_SESSION['username_admin']
 			$body .= '<p class="text-justify">Terimakasih telah bermitra dengan Lembaga Psikologi dan Psikometri RSF. Anda telah memiliki akun untuk mengelola DISC Test pada calon responden. Berikut informasi akun:</p>';
 			$body .= '<p class="text-justify">Email: <b>'.$emailMitra.'</b></p>';
 			$body .= '<p class="text-justify">Username: <b>'.$usernameMitra.'</b></p>';
-			$body .= '<p class="text-justify">Password: <b>'.$_POST['password'].'</b></p>';
+			$body .= '<p class="text-justify">Password: <b>'.$passwordMitra.'</b></p>';
 			$body .= '<p class="text-justify">Mohon dapat melakukan ganti password setelah anda login ke akun tersebut</p>';
 			$body .= '<a href="https://disc.griyapsikologi.com/admin.php" style="color: #aaa; text-decoration: none; transition: ease .3s; -webkit-transition: ease .3s; -moz-transition: ease .3s; -o-transition: ease .3s; -ms-transition: ease .3s;"><button style="max-width: 100%; background: #e3451e none repeat scroll 0 0; border: 2px solid #e3451e; color: #fff; display: inline-block; font-family: rubik; font-weight: 500; letter-spacing: 4px; line-height: 1; padding: 14px 30px; text-transform: uppercase; width: auto; transition: ease .3s;">Login Disini</button></a>';
 			// $body .= '<p class="text-justify">Jika tidak bisa, klik <a href="disc.griyapsikologi.com/admin.php">disini</a></p>';

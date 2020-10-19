@@ -4,14 +4,16 @@ require_once('connection.php');
 session_start();
 
 if(!isset($id)) {
-	if(!isset($_POST['nama'])){
+	if(isset($_POST['nama'], $_POST['usia'], $_POST['gender'], $_POST['email'])){
+		$nama = $_POST['nama'];
+		$usia = $_POST['usia'];
+		$jk = $_POST['gender'];
+		$email = $_POST['email'];
+	}
+	else{
 		header("Location: index.php");
 	}
-	$nama = $_POST['nama'];
-	$usia = $_POST['usia'];
-	$jk = $_POST['gender'];
-	$email = $_POST['email'];
-	if($_POST['id_mitra']){
+	if(isset($_POST['id_mitra'])){
 		$id_mitra = $_POST['id_mitra'];
 	}
 	$ttlD = 0;
@@ -28,50 +30,53 @@ if(!isset($id)) {
 	$kS = 0;
 	$kC = 0;
 	$kStar = 0;
-
-	for($i=1; $i < 25; ++$i) {
-		if($_POST['p'][$i] == 'D'){
-			++$ttlD;
-			++$pD;
+	if(isset($_POST['p'], $_POST['k'], $_POST['k']))
+	{
+		for($i=1; $i < 25; ++$i) {
+			if($_POST['p'][$i] == 'D'){
+				++$ttlD;
+				++$pD;
+			}
+			if($_POST['p'][$i] == 'I'){
+				++$ttlI;
+				++$pI;
+			}
+			if($_POST['p'][$i] == 'S'){
+				++$ttlS;
+				++$pS;
+			}
+			if($_POST['p'][$i] == 'C'){
+				++$ttlC;
+				++$pC;
+			}
+			if($_POST['p'][$i] == '*'){
+				++$pStar;
+			}
 		}
-		if($_POST['p'][$i] == 'I'){
-			++$ttlI;
-			++$pI;
-		}
-		if($_POST['p'][$i] == 'S'){
-			++$ttlS;
-			++$pS;
-		}
-		if($_POST['p'][$i] == 'C'){
-			++$ttlC;
-			++$pC;
-		}
-		if($_POST['p'][$i] == '*'){
-			++$pStar;
+	
+		for($i=1; $i < 25; ++$i) {
+			if($_POST['k'][$i] == 'D'){
+				--$ttlD;
+				++$kD;
+			}
+			if($_POST['k'][$i] == 'I'){
+				--$ttlI;
+				++$kI;
+			}
+			if($_POST['k'][$i] == 'S'){
+				--$ttlS;
+				++$kS;
+			}
+			if($_POST['k'][$i] == 'C'){
+				--$ttlC;
+				++$kC;
+			}
+			if($_POST['k'][$i] == '*'){
+				++$kStar;
+			}
 		}
 	}
-
-	for($i=1; $i < 25; ++$i) {
-		if($_POST['k'][$i] == 'D'){
-			--$ttlD;
-			++$kD;
-		}
-		if($_POST['k'][$i] == 'I'){
-			--$ttlI;
-			++$kI;
-		}
-		if($_POST['k'][$i] == 'S'){
-			--$ttlS;
-			++$kS;
-		}
-		if($_POST['k'][$i] == 'C'){
-			--$ttlC;
-			++$kC;
-		}
-		if($_POST['k'][$i] == '*'){
-			++$kStar;
-		}
-	}
+	
 }
 
 switch ($pD) {
@@ -1508,8 +1513,8 @@ if(isset($_POST)){
 				$masuk = $koneksi->query("UPDATE `data_diri` SET `$answer` = '$hidden' WHERE id = '$last_id'");
 			}
 			$_SESSION['validate'] = 1;
-			$email = $_POST['email'];
-			$nama = $_POST['nama'];
+			$email = $email;
+			$nama = $nama;
 			$subject = "[NOTICE] Review DISC Test Griya Psikologi";
 			$body = '<!DOCTYPE html>';
 			$body .= '<html style="height: 100%;">';

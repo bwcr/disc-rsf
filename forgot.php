@@ -4,8 +4,8 @@ require_once 'connection.php';
 session_start();
 
 if (isset($_GET["key"]) && isset($_GET["email"])){
-	$key = $_GET["key"];
-	$email = $_GET["email"];
+	$key = filter_var($_GET["key"], FILTER_SANITIZE_STRING);
+	$email = filter_var($_GET["email"], FILTER_VALIDATE_EMAIL);
 	$curDate = date("Y-m-d H:i:s");
 	$select = $koneksi->query("SELECT * FROM `password_reset` WHERE `key` = '$key' AND `email` = '$email'");
 	$row = mysqli_fetch_array($select);
