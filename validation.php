@@ -940,7 +940,7 @@ if ($_POST['forgot']) {
 			$body .= 'Lupa Password</h2>';
 			$body .= '<h3 class="content-subtitle" style="font-weight: bold; font-family: Rubik,sans-serif; color: #000; display: block; font-size: 22px; line-height: 1; margin: 0 0 20px; position: relative; text-transform: uppercase;">Halo, Admin</h3>';
 			$body .= '<p class="text-justify">Kami mendeteksi bahwa seseorang menekan lupa password pada akun anda. Maka dari itu, kami akan menginformasikan pada email yang terdaftar informasi akun anda:</p>';
-			$body .= '<p class="text-justify">Email: <b><?php echo($row[email]); ?></b></p>';
+			$body .= '<p class="text-justify">Email: <b><?= ($row[email]) ?></b></p>';
 			$body .= '<p class="text-justify">Email: <b>'.$row["email"].'</b></p>';
 			$body .= '<p class="text-justify">Password: <b>'.$row["password"].'</b></p>';
 			$body .= '<a href="disc.griyapsikologi.com/admin.php" style="color: #aaa; text-decoration: none; transition: ease .3s; -webkit-transition: ease .3s; -moz-transition: ease .3s; -o-transition: ease .3s; -ms-transition: ease .3s;"><button style="max-width: 100%; background: #e3451e none repeat scroll 0 0; border: 2px solid #e3451e; color: #fff; display: inline-block; font-family: rubik; font-weight: 500; letter-spacing: 4px; line-height: 1; padding: 14px 30px; text-transform: uppercase; width: auto; transition: ease .3s;">Login Disini</button></a>';

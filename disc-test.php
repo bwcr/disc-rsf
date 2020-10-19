@@ -120,26 +120,27 @@ elseif(isset($_GET['id']) && !isset($_POST[''])){
 		});
 		//Radio Button
 		<?php
-		for ($i=1; $i < 25 ; $i++) {
+		for ($i=1; $i < 25 ; $i++) { ?>
 			//Button Kanan
-			echo '$(".soal-'.$i.' tr:nth-child(2) > td:nth-child(2) > label > input").click(function(){
-				$(".soal-'.$i.' tr:nth-child(2) > td:first-child > label > input").prop("checked", false);
+			$(".soal-<?= $i ?> tr:nth-child(2) > td:nth-child(2) > label > input").click(function(){
+				$(".soal-<?= $i ?> tr:nth-child(2) > td:first-child > label > input").prop("checked", false);
 			});';
-			echo '$(".soal-'.$i.' tr:nth-child(3) > td:nth-child(2) > label > input").click(function(){
-				$(".soal-'.$i.' tr:nth-child(3) > td:first-child > label > input").prop("checked", false);
+			$(".soal-<?= $i ?> tr:nth-child(3) > td:nth-child(2) > label > input").click(function(){
+				$(".soal-<?= $i ?> tr:nth-child(3) > td:first-child > label > input").prop("checked", false);
 			});';
-			echo '$(".soal-'.$i.' tr:nth-child(4) > td:nth-child(2) > label > input").click(function(){
-				$(".soal-'.$i.' tr:nth-child(4) > td:first-child > label > input").prop("checked", false);
+			$(".soal-<?= $i ?> tr:nth-child(4) > td:nth-child(2) > label > input").click(function(){
+				$(".soal-<?= $i ?> tr:nth-child(4) > td:first-child > label > input").prop("checked", false);
 			});';
-			echo '$(".soal-'.$i.' tr:nth-child(5) > td:nth-child(2) > label > input").click(function(){
-				$(".soal-'.$i.' tr:nth-child(5) > td:first-child > label > input").prop("checked", false);
+			$(".soal-<?= $i ?> tr:nth-child(5) > td:nth-child(2) > label > input").click(function(){
+				$(".soal-<?= $i ?> tr:nth-child(5) > td:first-child > label > input").prop("checked", false);
 			});';
 			//Button Kiri
-			for ($j=2; $j < 6; $j++) {
-				echo '$(".soal-'.$i.' tr:nth-child('.$j.') > td:first-child > label > input").click(function(){
-					$(".soal-'.$i.' tr:nth-child('.$j.') > td:nth-child(2) > label > input").prop("checked", false);
+			<?php 
+			for ($j=2; $j < 6; $j++) { ?>
+				$(".soal-<?= $i ?> tr:nth-child('.$j.') > td:first-child > label > input").click(function(){
+					$(".soal-<?= $i ?> tr:nth-child('.$j.') > td:nth-child(2) > label > input").prop("checked", false);
 				});';
-			}};
+			<?php }};
 			?>
 			//Validasi Jawaban
 			$(".button").click(function(e){
@@ -188,15 +189,15 @@ elseif(isset($_GET['id']) && !isset($_POST[''])){
 </head>
 <body style="background-color: #EEEEEE">
 	<?php
-	if(isset($_SESSION['username']) || isset($_SESSION['username_admin'])){
-		echo
-		'<nav class="navbar navbar-expand-lg bg-light">
+	if(isset($_SESSION['username']) || isset($_SESSION['username_admin'])){ ?>
+		<nav class="navbar navbar-expand-lg bg-light">
 		<ul class="navbar nav">
 		<li class="nav-item">
 		<a class="nav-link active" href="results.php?id='.$id.'"><i class="fas fa-chevron-left"></i> Kembali ke Hasil Tes</a>
 		</li>
 		</ul>
-		</nav>';
+		</nav>
+	<?php
 	}
 	else{
 		?>
@@ -230,16 +231,16 @@ elseif(isset($_GET['id']) && !isset($_POST[''])){
 	<div class="container clearfix card p-4 mb-5 my-md-5" style="background-color: #f9f9f9">
 		<div class="box-content">
 			<?php
-			if (isset($_GET['id'])) {
-				echo "<p class='top-title'>
+			if (isset($_GET['id'])) { ?>
+				<p class='top-title'>
 				JAWABAN</p>";
-			}
-			else {
-				echo "<p class='top-title'>
+			<?php }
+			else { ?>
+				<p class='top-title'>
 				SOAL</p>
 				<h2 class='content-title'>
-				DISC TEST</h2>";
-			}
+				DISC TEST</h2>
+			<?php }
 			?>
 		</div>
 		<form action="calculate.php" method="POST">
@@ -2022,14 +2023,15 @@ elseif(isset($_GET['id']) && !isset($_POST[''])){
 <!-- <button type="submit">SUBMIT</button> -->
 </div>
 <?php
-if (isset($_POST) && !isset($_GET['id'])) {
-	echo '<input type="hidden" name="nama" value="'.$_POST["namaDepan"].' '.$_POST["namaBelakang"].'">';
-	echo '<input type="hidden" name="usia" value="'.$_POST["usia"].'">';
-	echo '<input type="hidden" name="gender" value="'.$_POST["gender"].'">';
-	echo '<input type="hidden" name="email" value="'.$_POST["email"].'">';
-	if(isset($_POST['id_mitra'])){
-		echo '<input type="hidden" name="id_mitra" value="'.$_POST["id_mitra"].'">';
-	}
+if (isset($_POST) && !isset($_GET['id'])) { ?>
+	<input type="hidden" name="nama" value="<?= $_POST["namaDepan"]?> <?= $_POST["namaBelakang"] ?>">
+	<input type="hidden" name="usia" value="'<?= $_POST["usia"]?>">
+	<input type="hidden" name="gender" value="<?= $_POST["gender"] ?>">
+	<input type="hidden" name="email" value="<?= $_POST["email"] ?>">
+	<?php 
+	if(isset($_POST['id_mitra'])){ ?>
+		<input type="hidden" name="id_mitra" value="<?= $_POST["id_mitra"] ?>">
+	<?php }
 }
 ?>
 </form>
@@ -2058,22 +2060,20 @@ if (isset($_POST) && !isset($_GET['id'])) {
 <?php
 if(isset($_SESSION['username']) || isset($_SESSION['username_admin'])){
 	$_SESSION['validate'] = 1;
-	if(isset($_GET["id"])){
-	// print_r($rowview);
-		echo "<script>";
-		echo "$('input:radio').attr('disabled','disabled');";
-		for ($i=1; $i < 193 ; $i++) { 
+	if(isset($_GET["id"])){ ?>
+		<script>
+		$('input:radio').attr('disabled','disabled');
+		<?php for ($i=1; $i < 193 ; $i++) {
 			$ans = $rowview['answer-'.$i];
 			if ($ans == "1") {
-				echo "
-				$('#radio-'+".$i."+'').attr({
+				?>
+				$('#radio-'+<?= $i ?>+'').attr({
 					checked: 'true'
 					});
-					";
-				}
-			}
-			echo "</script>";
-		}
+				<?php }
+			}?>
+			</script>
+		<?php }
 	}
 	?>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.2/jquery.twbsPagination.js"></script>

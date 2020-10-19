@@ -74,11 +74,6 @@ if(!isset($id)) {
 	}
 }
 
-
-/*echo "i = $i, D = $ttlD, I = $ttlI, S = $ttlS, C = $ttlC <br>";
-echo "pD = $pD, pI = $pI, pS = $pS, pC = $pC <br>";
-echo "kD = $kD,kI = $kI, kS = $kS, kC = $kC <br>";*/
-
 switch ($pD) {
 	case '0':
 	$ppD = -6;
@@ -144,7 +139,7 @@ switch ($pD) {
 	$ppD = 7.5;
 	break;
 	default:
-	echo "Error Perhitungan";
+	return false;
 	break;
 }
 
@@ -210,7 +205,7 @@ switch ($pI) {
 	$ppI = 8;
 	break;
 	default:
-	echo "Error Perhitungan";
+	return false;
 	break;
 }
 
@@ -279,7 +274,7 @@ switch ($pS) {
 	$ppS = 7.5;
 	break;
 	default:
-	echo "Ada kesalahan pada program";
+	return false;
 	break;
 }
 
@@ -348,7 +343,7 @@ switch ($pC) {
 	$ppC = 8;
 	break;
 	default:
-	echo "Ada kesalahan pada program, anda Indigo";
+	return false;
 	break;
 }
 
@@ -417,7 +412,7 @@ switch ($kD) {
 	$kkD = -7.5;
 	break;
 	default:
-	echo "Ada kesalahan pada program, anda Indigo";
+	return false;
 	break;
 }
 
@@ -486,7 +481,7 @@ switch ($kI) {
 	$kkI = -8;
 	break;
 	default:
-	echo "hore";
+	return false;
 	break;
 }
 
@@ -555,7 +550,7 @@ switch ($kS) {
 	$kkS = -8;
 	break;
 	default:
-	echo "Ada kesalahan pada program, anda Indigo";
+	return false;
 	break;
 }
 
@@ -624,7 +619,7 @@ switch ($kC) {
 	$kkC = -8;
 	break;
 	default:
-	echo "Ada kesalahan pada program, anda Indigo";
+	return false;
 	break;
 }
 
@@ -765,7 +760,7 @@ switch ($ttlD) {
 	$ttllD = 8;
 	break;
 	default:
-	echo "Ada kesalahan pada program";
+	return false;
 	break;
 }
 
@@ -867,7 +862,7 @@ switch ($ttlI) {
 	$ttllI = 8;
 	break;
 	default:
-	echo "Ada kesalahan pada program, anda Indigo";
+	return false;
 	break;
 }
 
@@ -986,7 +981,7 @@ switch ($ttlS) {
 	$ttllS = 8;
 	break;
 	default:
-	echo "Ada kesalahan pada program, anda Indigo";
+	return false;
 	break;
 }
 
@@ -1103,7 +1098,7 @@ switch ($ttlC) {
 	$ttllC = 8;
 	break;
 	default:
-	echo "Ada kesalahan pada program, anda Indigo";
+	return false;
 	break;
 }
 
@@ -1234,7 +1229,7 @@ switch ($discp) {
 	$infop = 40;
 	break;
 	default:
-	echo "ok<br>";
+	return false;
 	break;
 }
 
@@ -1497,7 +1492,7 @@ switch ($discttl) {
 	$infottl = 40;
 	break;
 	default:
-	echo "ok<br>";
+	return false;
 	break;
 }
 
@@ -1950,7 +1945,7 @@ if(isset($_POST)){
 			include 'test-mail.php';
 			header("Location: results.php?id=".md5($last_id)."");
 		} else {
-			echo "gagal";
+			return false;
 		}
 	}
 	elseif(isset($_POST['id_mitra'])){
@@ -1967,7 +1962,7 @@ if(isset($_POST)){
 			header("Location: results.php?id=".md5($last_id)."");
 		} 
 		else {
-			echo "gagal";
+			return false;
 		}
 	}
 }

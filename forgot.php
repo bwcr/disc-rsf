@@ -45,7 +45,7 @@ if (isset($_GET["key"]) && isset($_GET["email"])){
 					<div class="mb-3">
 						<input required="required" id="newPassword" type="password" name="newPassword" placeholder="Password Baru..">
 						<input required="required" id="confirmPassword" type="password" name="confirmPassword" placeholder="Password Konfirmasi..">
-						<input type="hidden" name="email" value="<?php echo $email;?>">
+						<input type="hidden" name="email" value="<?= $email ?>">
 					</div>
 					<br>		
 					<button type="submit">SUBMIT</button>

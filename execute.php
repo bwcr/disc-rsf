@@ -8,10 +8,10 @@ while ($i <= 192) {
 	$i++;
 }
 if($insert){
-		echo "success";
+		return true;
 	}
 	else{
-		echo "fail";
+		return false;
 	}
 
 ?>

@@ -101,9 +101,8 @@ else{
 <body class="home page-template page-template-homepage-slider page-template-homepage-slider-php page page-id-93 logged-in admin-bar elementor-default elementor-page elementor-page-93 customize-support">
 	<?php
 	if(isset($_SESSION['username_admin']) || isset($_SESSION['username'])){
-		if($_SESSION['src'] === "admin"){
-			echo
-			'<nav class="navbar navbar-expand-lg bg-light">
+		if($_SESSION['src'] === "admin"){ ?>
+			<nav class="navbar navbar-expand-lg bg-light">
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 			    <span class="navbar-toggler-icon"></span>
 			  </button>
@@ -119,13 +118,12 @@ else{
 			</li>
 			<li class="nav-item">
 			<a class="nav-link active" href="#" onclick="deleteDoc()"><i class="fas fa-trash"></i> Hapus</a>
-			</li>';			
-			echo '</ul>
-			</nav>';
-		}
-		elseif($_SESSION['src'] === "mitra"){
-			echo
-			'<nav class="navbar navbar-expand-lg bg-light">
+			</li>
+			</ul>
+			</nav>
+		<?php }
+		elseif($_SESSION['src'] === "mitra"){ ?>
+			<nav class="navbar navbar-expand-lg bg-light">
 			<ul class="navbar nav">
 			<li class="nav-item">
 			<a class="nav-link active" href="mitra/responden.php"><i class="fas fa-chevron-left"></i> Kembali ke Menu Utama</a>
@@ -135,10 +133,10 @@ else{
 			</li>
 			<li class="nav-item">
 			<a class="nav-link active" href="#" onclick="deleteDoc()"><i class="fas fa-trash"></i> Hapus</a>
-			</li>';
-			echo '</ul>
-			</nav>';
-		}
+			</li>
+			</ul>
+			</nav>
+		<?php }
 	}
 	?>
 	<?php
@@ -153,10 +151,10 @@ else{
 		<table class="table table-borderless mx-auto w-75">
 			<tbody>
 				<th>
-					<?php echo "<td>Nama: ".$nama."</td>";?>
-					<?php echo "<td>Usia: ".$usia." th</td>";?>
-					<?php echo "<td>Jenis Kelamin: ".$jk."</td>";?>
-					<?php echo "<td>Email: ".$email."</td>";?>
+					<td>Nama: "<?= $nama ?></td>
+					<td>Usia: "<?= $usia ?>" th</td>
+					<td>Jenis Kelamin: <?= $jk ?> </td>
+					<td>Email: <?= $email ?></td>
 				</th>
 			</tbody>
 		</table>
@@ -177,27 +175,27 @@ else{
 						<tbody>
 							<tr>
 								<td scope="row">MASK/PUBLIC SELF</td>
-								<?php echo "<td>".$pD."</td>";?>
-								<?php echo "<td>".$pI."</td>";?>
-								<?php echo "<td>".$pS."</td>";?>
-								<?php echo "<td>".$pC."</td>";?>
-								<?php echo "<td>".$pStar."</td>";?>
+								<td>"<?= $pD ?>"</td>
+								<td>"<?= $pI ?>"</td>
+								<td>"<?= $pS ?>"</td>
+								<td>"<?= $pC ?>"</td>
+								<td>"<?= $pStar ?>"</td>
 							</tr>
 							<tr>
 								<td scope="row">CORE/PRIVATE SELF</td>
-								<?php echo "<td>".$kD."</td>";?>
-								<?php echo "<td>".$kI."</td>";?>
-								<?php echo "<td>".$kS."</td>";?>
-								<?php echo "<td>".$kC."</td>";?>
-								<?php echo "<td>".$kStar."</td>";?>
+								<td><?= $kD ?></td>
+								<td><?= $kI ?></td>
+								<td><?= $kS ?></td>
+								<td><?= $kC ?></td>
+								<td><?= $kStar ?></td>
 							</tr>
 							<tr>
 								<td scope="row">MIRROR/PERCEIVED SELF</td>
-								<?php echo "<td>".$ttlD."</td>";?>
-								<?php echo "<td>".$ttlI."</td>";?>
-								<?php echo "<td>".$ttlS."</td>";?>
-								<?php echo "<td>".$ttlC."</td>";?>
-								<?php echo "<td style='background-color:#eeee'></td>";?>
+								<td><?= $ttlD ?></td>
+								<td><?= $ttlI ?></td>
+								<td><?= $ttlS ?></td>
+								<td><?= $ttlC ?></td>
+								<td style='background-color:#eeee'></td>
 							</tr>
 						</tbody>
 					</table>
@@ -228,7 +226,7 @@ else{
 			backgroundColor: 'transparent',
 			borderColor: '#7CB7F2',
 			fill: 'false',
-			<?php echo "data: [".$ppD.", ".$ppI.", ".$ppS.", ".$ppC."],"; ?>
+			data: [<?= $ppD ?>, <?= $ppI ?>, <?= $ppS ?>, <?= $ppC ?>],
 		}]
 	},
 	options: {
@@ -239,16 +237,16 @@ else{
 });
 </script>
 <p id="graph3" class="line-subtext">Mask/Public Self <i class="fas fa-info-circle protip" data-pt-title="Kepribadian di muka umum" data-pt-scheme='leaf' data-pt-size='small'></i></p>
+<h3 class= 'content-subtitle'><?= $rowp['title'] ?></h3>
+<ul class= 'list'>
 <?php
-echo "<h3 class= 'content-subtitle'>".$rowp['title']."</h3>";
-echo "<ul class= 'list'>";
-for ($list = 1; $list < 13 ; $list++) { 
-	if (strlen(trim($rowp['list'.$list.''])) != 0){
-		echo "<li>".$rowp['list'.$list.'']."</li>";
-	}
+for ($list = 1; $list < 13 ; $list++) : ?> 
+	<?php if (strlen(trim($rowp['list'.$list.''])) != 0) : ?>
+		<li><?= $rowp['list'.$list.''] ?></li>
+	<?php endif ?>
 }
-echo "</ul>";
-?>
+<?php endfor ?>
+</ul>
 </div>
 <div class="col-md-4">
 	<canvas id="CorePrivateSelf"></canvas>
@@ -266,8 +264,7 @@ echo "</ul>";
 			backgroundColor: 'transparent',
 			borderColor: '#E3451E',
 			fill: 'false',
-			// data: [0, 10, 5, 2, 20, 30, 45],
-			<?php echo "data: [".$kkD.", ".$kkI.", ".$kkS.", ".$kkC."],"; ?>
+			data: [<?= $kkD ?>, <?= $kkI ?>, <?= $kkS ?>, <?= $kkC ?>]
 		}]
 	},
 	options: {
@@ -278,16 +275,18 @@ echo "</ul>";
 });
 </script>
 <p id="graph1" class="line-subtext">Core/Private Self <i class="fas fa-info-circle protip" data-pt-title="Kepribadian saat mendapat tekanan" data-pt-scheme='leaf' data-pt-size='small'></i></p>
+
+<h3 class= 'content-subtitle'><?= $rowk['title'] ?></h3>
+<ul class= 'list'>
 <?php
-echo "<h3 class= 'content-subtitle'>".$rowk['title']."</h3>";
-echo "<ul class= 'list'>";
 for ($list = 1; $list < 13 ; $list++) { 
-	if (strlen(trim($rowk['list'.$list.''])) != 0){
-		echo "<li>".$rowk['list'.$list.'']."</li>";
+	if (strlen(trim($rowk['list'.$list.''])) != 0){ ?>
+		<li><?= $rowk['list'.$list.''] ?></li>
+	<?php 
 	}
 }
-echo "</ul>";
 ?>
+</ul>
 </div>
 <div class="col-md-4">
 	<canvas id="MirrorPerceivedSelf"></canvas>
@@ -305,8 +304,7 @@ echo "</ul>";
 			backgroundColor: 'transparent',
 			borderColor: '#0DC143',
 			fill: 'false',
-			// data: [0, 10, 5, 2, 20, 30, 45],
-			<?php echo "data: [".$ttllD.", ".$ttllI.", ".$ttllS.", ".$ttllC."],"; ?>
+			data: [<?= $ttllD ?>, <?= $ttllI ?>, <?= $ttllS ?>, <?= $ttllC ?>],
 		}]
 	},
 	options: {
@@ -317,41 +315,37 @@ echo "</ul>";
 });
 </script>
 <p id="graph2" class="line-subtext">Mirror/Perceived Self <i class="fas fa-info-circle protip" data-pt-title="Kepribadian asli yang tersembunyi" data-pt-scheme='leaf' data-pt-size='small'></i></p>
+<h3 class= 'content-subtitle'><?= $rowttl['title'] ?></h3>
+<ul class= 'list'>
 <?php
-echo "<h3 class= 'content-subtitle'>".$rowttl['title']."</h3>";
-echo "<ul class= 'list'>";
 for ($list = 1; $list < 13 ; $list++) { 
-	if (strlen(trim($rowttl['list'.$list.''])) != 0){
-		echo "<li>".$rowttl['list'.$list.'']."</li>";
+	if (strlen(trim($rowk['list'.$list.''])) != 0){ ?>
+		<li><?= $rowk['list'.$list.''] ?></li>
+	<?php 
 	}
 }
-echo "</ul>";
 ?>
+</ul>
 </div>
 </div>
 <?php
 }
 ?>
 <?php
-if(isset($_SESSION['username']) || isset($_SESSION['username_admin']) || $row['premium'] == 1 || $row['premium'] == 0){
-	echo '<div class="row clearfix" id="kepribadian">
+if(isset($_SESSION['username']) || isset($_SESSION['username_admin']) || $row['premium'] == 1 || $row['premium'] == 0){ ?>
+	<div class="row clearfix" id="kepribadian">
 	<div id="paragraph" class="col-md-8">
-	<h3 class="content-subtitle">Deskripsi Kepribadian</h3>'
-	?>
-	<?php
-			// $scriptttl = $rowttl['paragraph'];
-	echo "<p class='text-justify'>".$rowttl['paragraph']."</p>";
-	echo '</div>';
-	echo '<div id="paragraph" class="col-md-4">';
-	echo '<h3 class="content-subtitle">Job Match</h3>';
-	?>
-	<?php
-	echo "<p>".$rowttl['jobs']."</p>";
+	<h3 class="content-subtitle">Deskripsi Kepribadian</h3>
+	<p class='text-justify'><?= $rowttl['paragraph'] ?></p>
+	</div>
+	<div id="paragraph" class="col-md-4">
+	<h3 class="content-subtitle">Job Match</h3>
+	<p><?= $rowttl['jobs'] ?></p>
 
-	echo '</div>';
-	echo '</div>';
+	</div>
+	</div>
+<?php
 }
-
 ?>
 <?php
 if(!isset($_SESSION['username_admin'])){
@@ -375,9 +369,8 @@ if (!isset($_SESSION['username_admin']) && $row['premium'] == 1) {
 }
 ?>
 </div>
-<?php
-echo "<script>";
-echo "function printDoc(){
+<script>
+function printDoc(){
 	$('button,#premium').addClass('d-none');
 	$('.box-content').removeClass('mt-5');
 	if($('body').css('color','#8d8d8d')){
@@ -386,25 +379,24 @@ echo "function printDoc(){
 	window.print();
 	$('button,#premium').removeClass('d-none');
 	$('.box-content').addClass('mt-5');
-}";
+}
 
-echo 'function premium(){
+function premium(){
 	var x = confirm("Pastikan pengguna sudah membayar, lanjutkan?");
 	if (x == true) {';
-	$id = $_GET['id'];
-	echo 'location.replace("update-premium.php?id='.$id.'")
+		var id = <?= $_GET['id'] ?>
+		location.replace("update-premium.php?id="id)
+	}
 }
-}';
 
-echo "function deleteDoc(){";
-echo 'var x = confirm("Anda akan menghapus jawaban responden, lanjutkan?");';
-echo 'if (x == true) {';
-$id = $_GET['id'];
-echo 'location.replace("delete.php?id='.$id.'");';
-echo '}';
-echo '}';
-echo '</script>';
-?>
+function deleteDoc(){
+	var x = confirm("Anda akan menghapus jawaban responden, lanjutkan?");
+	if (x == true) {
+		var id = <?= $_GET['id'] ?>
+		location.replace("delete.php?id="id)
+	}
+}
+</script>
 <script>
 	window.onload = function(){
 		var string = $("p.text-justify").text();
