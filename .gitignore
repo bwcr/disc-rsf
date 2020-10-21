@@ -3,6 +3,7 @@ vendor/
 image/
 admin-update.php
 addanswer.php
+admin/js/gulpfile.js
 js/disc.js
 js/pagination.js
 admin/node_modules
