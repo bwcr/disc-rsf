@@ -9,9 +9,9 @@ if(isset(session_get('userame_admin')) && isset(session_get('password_admin'))){
 
 if(isset($session_username) && isset($session_password)){
 	if(isset(post('password'), post('newPassword'), post('confirmPassword')){
-		$password = md5($_POST['password']);
-		$newPassword = md5($_POST['newPassword']);
-		$confirmPassword = md5($_POST['confirmPassword']);
+		$password = md5(post('password');
+		$newPassword = md5(post('newPassword');
+		$confirmPassword = md5(post('confirmPassword');
 
 		if($password === $session_password){
 			if($newPassword !== $confirmPassword){
@@ -44,7 +44,6 @@ if(isset($session_username) && isset($session_password)){
 		if($select->num_rows > 0){
 			session_add('alert-failure', "Username atau Email telah digunakan");
 			header("Location: editProfil.php");
-			die();
 		}
 		else{
 			$update = $koneksi->query("UPDATE `admin` SET `username`='$username', `email`='$email' WHERE `username` = '$session_username' AND `password` = '$session_password'");

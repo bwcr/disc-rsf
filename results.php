@@ -58,15 +58,12 @@ if(isset(get('id')){
 else{
 	if(isset(session_get('id_mitra')) && isset(session_get('username')) && isset(session_get('password'))){
 		header("Location: mitra/responden.php");
-		die();
 	}
 	elseif (isset(session_get('username_admin')) && isset(session_get('password_admin'))) {
 		header("Location: admin/responden.php");
-		die();
 	}
 	else{
 		header("Location: index.php");
-		die();
 	}
 }
 ?>

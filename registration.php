@@ -22,7 +22,6 @@ if(isset(get('id_mitra')) && isset(get('nama')) && isset(get('email'))){
 		window.location.href = 'index.php';
 		</script>";
 		<?php
-		die();
 	}
 	else{
 		$rowresponden = mysqli_fetch_array($viewresponden);
