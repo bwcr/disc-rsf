@@ -7,3 +7,5 @@ js/disc.js
 admin/node_modules
 # css/benten.css
 node_modules/
+.stylelintignore
+.stylelintrc.json

@@ -657,7 +657,6 @@ ol ol ol li {
   background: #dedede none repeat scroll 0 0;
   border-radius: 100px;
   color: #fff;
-  display: inline-block;
   float: right;
   font-size: 14px;
   height: 30px;
@@ -883,7 +882,6 @@ ol ol ol li {
 }
 
 .port-filter li {
-  display: inline-block;
   float: right;
   margin: 0 0 3px;
 }
@@ -1519,7 +1517,7 @@ div.wpcf7-mail-sent-ok {
 }
 
 #searchform {
-  margin: 0x;
+  margin: 0px;
   position: relative;
 }
 
@@ -1712,7 +1710,6 @@ div.wpcf7-mail-sent-ok {
 
 .comment-meta .comment-edit-link {
   border: 1px solid #ddd;
-  display: inline-block;
   float: right;
   font-size: 12px;
   font-weight: normal;
@@ -1920,7 +1917,6 @@ img.aligncenter {
   border-radius: 100px;
   color: #fff;
   content: "\f08d";
-  display: inline-block;
   float: right;
   font-family: fontawesome;
   font-size: 14px;
@@ -1999,6 +1995,7 @@ img.aligncenter {
   padding: 14px 30px;
   width: auto;
   text-transform: uppercase;
+  transition: all 0.3s ease 0s;
   -webkit-transition: all 0.3s ease 0s;
   -moz-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;

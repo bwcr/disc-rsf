@@ -19,11 +19,40 @@ input[type="email"] {
   margin-bottom: 1em;
 }
 
-
-/*Radio Button*/
+/* Radio Button */
 
 .btn.btn-sm:hover {
-  background-color: #E3451E;
+  background-color: #e3451e;
+  color: white;
+}
+
+button,
+.button {
+  background: #e3451e none repeat scroll 0 0;
+  border: 2px solid #e3451e;
+  color: #fff;
+  display: inline-block;
+  font-family: 'Rubik', Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  letter-spacing: 4px;
+  line-height: 1;
+  padding: 14px 30px;
+  text-transform: uppercase;
+  width: auto;
+  transition: ease 0.3s;
+}
+
+button:hover,
+.button:hover {
+  background: white;
+  color: #e3451e;
+  cursor: pointer;
+}
+
+button:disabled,
+.button:disabled {
+  background-color: grey;
+  border-color: grey;
   color: white;
 }
 
@@ -34,6 +63,14 @@ button:disabled {
 }
 
 button:disabled:hover {
+  background-color: grey;
+  border-color: grey;
+  color: white;
+  cursor: unset;
+}
+
+button:disabled:hover,
+.button:disabled:hover {
   background-color: grey;
   border-color: grey;
   color: white;
@@ -51,7 +88,6 @@ button:disabled:hover {
   user-select: none;
 }
 
-
 /* Hide the browser's default radio button */
 
 .container-checkmark input {
@@ -61,7 +97,6 @@ button:disabled:hover {
   height: 0;
   width: 0;
 }
-
 
 /* Create a custom radio button */
 
@@ -77,46 +112,41 @@ button:disabled:hover {
   display: inline-block;
 }
 
-
 /* On mouse-over, add a grey background color */
 
-.container-checkmark:hover input~.checkmark {
+.container-checkmark:hover input ~ .checkmark {
   background-color: #ccc;
 }
 
-
 /* When the radio button is checked, add a blue background */
 
-.container-checkmark input:checked~.checkmark {
+.container-checkmark input:checked ~ .checkmark {
   background-color: #e3451e;
 }
 
-
 /* Create the indicator (the dot/circle - hidden when not checked) */
 
-.checkmark:after {
+.checkmark::after {
   content: "";
   position: absolute;
   display: none;
 }
 
-
-/* Show the indicator (dot/circle) when checked */
-
-.container-checkmark input:checked~.checkmark:after {
-  display: block;
-}
-
-
 /* Style the indicator (dot/circle) */
 
-.container-checkmark .checkmark:after {
+.container-checkmark .checkmark::after {
   top: 9px;
   left: 9px;
   width: 8px;
   height: 8px;
   border-radius: 50%;
   background: white;
+}
+
+/* Show the indicator (dot/circle) when checked */
+
+.container-checkmark input:checked ~ .checkmark::after {
+  display: block;
 }
 
 table {
@@ -128,36 +158,16 @@ td a:hover {
 }
 
 section {
-  transition: ease .3s;
+  transition: ease 0.3s;
 }
 
 .sidebar {
   position: fixed !important;
   display: inline-block;
-  top: 0px;
-  padding: .5em;
+  top: 0;
+  padding: 0.5em;
   z-index: 15;
   background-color: grey;
-}
-
-*/ .btn.btn-sm:hover {
-  background-color: #E3451E;
-  color: white;
-}
-
-button:disabled,
-.button:disabled {
-  background-color: grey;
-  border-color: grey;
-  color: white;
-}
-
-button:disabled:hover,
-.button:disabled:hover {
-  background-color: grey;
-  border-color: grey;
-  color: white;
-  cursor: unset;
 }
 
 .row {
@@ -172,31 +182,8 @@ form span {
   padding-bottom: 1em;
 }
 
-button,
-.button {
-  background: #e3451e none repeat scroll 0 0;
-  border: 2px solid #e3451e;
-  color: #fff;
-  display: inline-block;
-  font-family: rubik;
-  font-weight: 500;
-  letter-spacing: 4px;
-  line-height: 1;
-  padding: 14px 30px;
-  text-transform: uppercase;
-  width: auto;
-  transition: ease .3s;
-}
-
-button:hover,
-.button:hover {
-  background: white;
-  color: #e3451e;
-  cursor: pointer;
-}
-
 .card {
-  border-radius: 0px !important;
+  border-radius: 0 !important;
 }
 
 #wp-calendar {
@@ -212,12 +199,12 @@ button:hover,
 #submit {
   position: fixed;
   width: 100%;
-  bottom: 0px;
-  border-top: 1px solid rgba(0, 0, 0, .125);
+  bottom: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
 }
 
 #graph3.line-subtext::before {
-  background: #7CB7F2 none repeat scroll 0 0 !important;
+  background: #7cb7f2 none repeat scroll 0 0 !important;
 }
 
 canvas {
@@ -225,7 +212,7 @@ canvas {
 }
 
 #graph1.line-subtext::before {
-  background: #E3451E none repeat scroll 0 0 !important;
+  background: #e3451e none repeat scroll 0 0 !important;
 }
 
 #graph2.line-subtext::before {
@@ -244,13 +231,11 @@ canvas {
   left: 1em;
 }
 
-
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
 
 .row.content {
-  height: 550px
+  height: 550px;
 }
-
 
 /* Set gray background color and 100% height */
 
@@ -258,7 +243,6 @@ canvas {
   background-color: #f1f1f1;
   height: 100%;
 }
-
 
 /* On small screens, set height to 'auto' for the grid */
 
@@ -282,7 +266,7 @@ label.error {
   color: #e3451e;
 }
 
-label.container-checkmark>label.error {
+label.container-checkmark > label.error {
   visibility: hidden;
 }
 
