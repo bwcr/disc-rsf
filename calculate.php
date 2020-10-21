@@ -4,17 +4,17 @@ require_once('connection.php');
 session_start();
 
 if(!isset($id)) {
-	if(isset($_POST['nama'], $_POST['usia'], $_POST['gender'], $_POST['email'])){
-		$nama = $_POST['nama'];
-		$usia = $_POST['usia'];
-		$jk = $_POST['gender'];
-		$email = $_POST['email'];
+	if(isset(post('nama'), post('usia'), post('gender'), post('email'))){
+		$nama = post('nama');
+		$usia = post('usia');
+		$jk = post('gender');
+		$email = post('email');
 	}
 	else{
 		header("Location: index.php");
 	}
-	if(isset($_POST['id_mitra'])){
-		$id_mitra = $_POST['id_mitra'];
+	if(isset(post('id_mitra'))){
+		$id_mitra = post('id_mitra');
 	}
 	$ttlD = 0;
 	$ttlI = 0;
@@ -30,48 +30,48 @@ if(!isset($id)) {
 	$kS = 0;
 	$kC = 0;
 	$kStar = 0;
-	if(isset($_POST['p'], $_POST['k'], $_POST['k']))
+	if(isset(post('p'), post('k')))
 	{
 		for($i=1; $i < 25; ++$i) {
-			if($_POST['p'][$i] == 'D'){
+			if(post('p')[$i] == 'D'){
 				++$ttlD;
 				++$pD;
 			}
-			if($_POST['p'][$i] == 'I'){
+			if(post('p')[$i] == 'I'){
 				++$ttlI;
 				++$pI;
 			}
-			if($_POST['p'][$i] == 'S'){
+			if(post('p')[$i] == 'S'){
 				++$ttlS;
 				++$pS;
 			}
-			if($_POST['p'][$i] == 'C'){
+			if(post('p')[$i] == 'C'){
 				++$ttlC;
 				++$pC;
 			}
-			if($_POST['p'][$i] == '*'){
+			if(post('p')[$i] == '*'){
 				++$pStar;
 			}
 		}
 	
 		for($i=1; $i < 25; ++$i) {
-			if($_POST['k'][$i] == 'D'){
+			if(post('k')[$i] == 'D'){
 				--$ttlD;
 				++$kD;
 			}
-			if($_POST['k'][$i] == 'I'){
+			if(post('k')[$i] == 'I'){
 				--$ttlI;
 				++$kI;
 			}
-			if($_POST['k'][$i] == 'S'){
+			if(post('k')[$i] == 'S'){
 				--$ttlS;
 				++$kS;
 			}
-			if($_POST['k'][$i] == 'C'){
+			if(post('k')[$i] == 'C'){
 				--$ttlC;
 				++$kC;
 			}
-			if($_POST['k'][$i] == '*'){
+			if(post('k')[$i] == '*'){
 				++$kStar;
 			}
 		}
@@ -1501,18 +1501,18 @@ switch ($discttl) {
 	break;
 }
 
-if(isset($_POST)){
+if(isset(post())){
 	$today = date("d/m/Y");
-	if(!isset($_POST['id_mitra'])){
+	if(!isset(post('id_mitra')){
 		if ($koneksi->query("INSERT INTO `data_diri` (`id`, `nama`, `usia`, `jk`, `email`, `pD`, `kD`, `pI`, `kI`, `pS`, `kS`, `pC`, `sC`, `pStar`, `kStar`, `ttlD`, `ttlI`, `ttlS`, `ttlC`, `ppD`,  `ppI`, `ppS`, `ppC`, `kkD`, `kkI`, `kkS`, `kkC`, `ttllD`, `ttllI`, `ttllS`, `ttllC`, `infop`, `infok`, `infottl`, `tanggal`) VALUES (NULL,'$nama','$usia','$jk','$email','$pD','$kD','$pI','$kI','$pS','$kS','$pC','$kC','$pStar', '$kStar', '$ttlD', '$ttlI', '$ttlS', '$ttlC', '$ppD', '$ppI', '$ppS', '$ppC', '$kkD', '$kkI', '$kkS', '$kkC', '$ttllD', '$ttllI', '$ttllS', '$ttllC', '$infop', '$infok', '$infottl', '$today')") === TRUE) {
 			$last_id = $koneksi->insert_id;
 			for ($num = 1; $num < 193 ; $num++) { 
 				$answer = 'answer-'.$num; 
 				$hiddenname = 'h-'.$num;
-				$hidden = $_POST[$hiddenname];
+				$hidden = post($hiddenname);
 				$masuk = $koneksi->query("UPDATE `data_diri` SET `$answer` = '$hidden' WHERE id = '$last_id'");
 			}
-			$_SESSION['validate'] = 1;
+			session_get('validate') = 1;
 			$email = $email;
 			$nama = $nama;
 			$subject = "[NOTICE] Review DISC Test Griya Psikologi";
@@ -1940,7 +1940,7 @@ if(isset($_POST)){
 			$body .= 'Review</p>';
 			$body .= '<h2 class="content-title" style="font-weight: bold; font-family: Rubik,sans-serif; color: #000; font-size: 45px; letter-spacing: 3px; line-height: 1; margin: 0 auto 30px; max-width: 500px; text-transform: uppercase;">';
 			$body .= 'DISC Test</h2>';
-			$body .= '<h3 class="content-subtitle" style="font-weight: bold; font-family: Rubik,sans-serif; color: #000; display: block; font-size: 22px; line-height: 1; margin: 0 0 20px; position: relative; text-transform: uppercase;">'.$_POST["nama"].'</h3>';
+			$body .= '<h3 class="content-subtitle" style="font-weight: bold; font-family: Rubik,sans-serif; color: #000; display: block; font-size: 22px; line-height: 1; margin: 0 0 20px; position: relative; text-transform: uppercase;">'.post("nama").'</h3>';
 			$body .= '<p class="text-justify">Terimakasih telah melakukan DISC Test pada Griya Psikologi RSF. Anda dapat melihat kembali hasil DISC Test anda disini.</p>';
 			// $body .= '<p class="text-justify">Mohon dapat melakukan ganti password setelah anda login ke akun tersebut</p>';
 			$body .= '<a href="https://disc.griyapsikologi.com/results.php?id='.md5($last_id).'" style="color: #aaa; text-decoration: none; transition: ease .3s; -webkit-transition: ease .3s; -moz-transition: ease .3s; -o-transition: ease .3s; -ms-transition: ease .3s;"><button style="max-width: 100%; background: #e3451e none repeat scroll 0 0; border: 2px solid #e3451e; color: #fff; display: inline-block; font-family: rubik; font-weight: 500; letter-spacing: 4px; line-height: 1; padding: 14px 30px; text-transform: uppercase; width: auto; transition: ease .3s;">Lihat Disini</button></a>';
@@ -1953,17 +1953,17 @@ if(isset($_POST)){
 			return false;
 		}
 	}
-	elseif(isset($_POST['id_mitra'])){
+	elseif(isset(post('id_mitra')){
 		if ($koneksi->query("INSERT INTO `data_diri` (`id`, `nama`, `usia`, `jk`, `email`, `id_mitra`, `pD`, `kD`, `pI`, `kI`, `pS`, `kS`, `pC`, `sC`, `pStar`, `kStar`, `ttlD`, `ttlI`, `ttlS`, `ttlC`, `ppD`,  `ppI`, `ppS`, `ppC`, `kkD`, `kkI`, `kkS`, `kkC`, `ttllD`, `ttllI`, `ttllS`, `ttllC`, `infop`, `infok`, `infottl`, `tanggal`) VALUES (NULL,'$nama','$usia','$jk','$email','$id_mitra','$pD','$kD','$pI','$kI','$pS','$kS','$pC','$kC','$pStar', '$kStar', '$ttlD', '$ttlI', '$ttlS', '$ttlC', '$ppD', '$ppI', '$ppS', '$ppC', '$kkD', '$kkI', '$kkS', '$kkC', '$ttllD', '$ttllI', '$ttllS', '$ttllC', '$infop', '$infok', '$infottl', '$today')") === TRUE) {
 			$last_id = $koneksi->insert_id;
 			$delete = $koneksi->query("DELETE FROM `data_diri_pending` WHERE `id_mitra` = '$id_mitra' AND `nama` = '$nama' AND `email` = '$email'");
 			for ($num = 1; $num < 193 ; $num++) { 
 				$answer = 'answer-'.$num; 
 				$hiddenname = 'h-'.$num;
-				$hidden = $_POST[$hiddenname];
+				$hidden = post($hiddenname);
 				$masuk = $koneksi->query("UPDATE `data_diri` SET `$answer` = '$hidden' WHERE id = '$last_id'");
 			}
-			$_SESSION['validate'] = 1;
+			session_add('validate', 1);
 			header("Location: results.php?id=".md5($last_id)."");
 		} 
 		else {

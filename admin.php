@@ -3,8 +3,7 @@ session_start();
 
 require_once 'connection.php';
 
-if (isset($_SESSION['username']) && $_SESSION['password'] || isset($_SESSION['username_admin']) && $_SESSION['password_admin']) {
-	// unset($_SESSION);
+if (isset(session_get('username')) && session_get('password') || isset(session_get('username_admin')) && session_get('password_admin')) {
 	session_destroy();
 }
 
@@ -37,21 +36,21 @@ if (isset($_SESSION['username']) && $_SESSION['password'] || isset($_SESSION['us
 					<input type="password" name="password" placeholder="Password..." required="required">
 				</div>
 				<?php
-				if(isset($_SESSION['alert-warning'])){
+				if(isset(session_get('alert-warning'))){
 					?>
 					<div class="alert alert-warning" role="alert">
-						<?= $_SESSION['alert-warning'] ?>
+						<?= session_get('alert-warning') ?>
 					</div>
 					<?php
-					unset($_SESSION['alert-warning']);
+					unset(session_get('alert-warning'));
 				}
-				elseif(isset($_SESSION['alert-success'])){
+				elseif(isset(session_get('alert-success'))){
 					?>
 					<div class="alert alert-success" role="alert">
-						<?= $_SESSION['alert-success'] ?>
+						<?= session_get('alert-success') ?>
 					</div>
 					<?php
-					unset($_SESSION['alert-success']);
+					unset(session_get('alert-success'));
 				}
 				?>
 				<!-- Modal -->

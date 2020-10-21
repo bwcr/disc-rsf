@@ -29,7 +29,7 @@
                       <label class="mdc-text-field w-100">
                         <h2 class="mdc-typography--subheading1">Username</h2>
                         <input name="username" type="text" placeholder="Username..." required="required"
-                          class="mdc-text-field__input" value="<?= $_SESSION['username_admin']?>">
+                          class="mdc-text-field__input" value="<?= session_get('username_admin')?>">
                         <div class="mdc-text-field__bottom-line"></div>
                       </label>
                     </div>
@@ -37,7 +37,7 @@
                       <label class="mdc-text-field w-100">
                         <h2 class="mdc-typography--subheading1">Email</h2>
                         <input name="email" type="email" placeholder="email..." required="required"
-                          class="mdc-text-field__input" value="<?= $_SESSION["email"] ?>">
+                          class="mdc-text-field__input" value="<?= session_get("email") ?>">
                         <div class="mdc-text-field__bottom-line"></div>
                       </label>
                     </div>
@@ -94,18 +94,18 @@
       </main>
     </div>
     <?php
-    if(isset($_SESSION['alert-success']) || isset($_SESSION['alert-failure'])){
+    if(isset(session_get('alert-success')) || isset(session_get('alert-failure'))){
       ?>
     <div id="alertModal" class="modal">
       <p>
         <?php 
-        if (isset($_SESSION['alert-success'])) { ?>
-          <?= $_SESSION['alert-success']; ?><?php
-          unset($_SESSION['alert-success']);
+        if (isset(session_get('alert-success'))) { ?>
+          <?= session_get('alert-success'); ?><?php
+          unset(session_get('alert-success'));
         }
-        elseif (isset($_SESSION['alert-failure'])) { ?>
-          <?= $_SESSION['alert-failure']; ?><?php
-          unset($_SESSION['alert-failure']);
+        elseif (isset(session_get('alert-failure'))) { ?>
+          <?= session_get('alert-failure'); ?><?php
+          unset(session_get('alert-failure'));
         }
         else{?>
       </p>

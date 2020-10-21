@@ -3,39 +3,35 @@ require_once 'connection.php';
 
 session_start();
 
-if(isset($_SESSION) && isset($_POST) && !isset($_GET['id'])){
-	unset($_SESSION['username']);
-	unset($_SESSION['password']);
-	unset($_SESSION['username_admin']);
-	unset($_SESSION['password_password']);
-	session_destroy();
+if(isset(session_get()) && isset(post()) && !isset(get('id'))){
+	session_unset();
 }
 
-if(!isset($_SESSION['username']) || !isset($_SESSION['username_admin'])){
-	if(!isset($_POST)){
-		$_SESSION['error_code'] = '40004';
+if(!isset(session_get('username') || !isset(session_get('username_admin'))){
+	if(!isset(post())){
+		session_add('error_code', '40004');
 		header('Location: 404.php');
 	}
 }
 
-if(isset($_POST)){
-	if (!isset($_POST['namaDepan']) && !isset($_GET['id'])){
-		$_SESSION['error_code'] = '40005';
+if(isset(post())){
+	if (!isset(post('namaDepan')) && !isset(get('id')){
+		session_add('error_code', '40005');
 		header('Location: 404.php');
 	}
 }
 
-if(isset($_GET['id'])){
-	if (isset($_SESSION['username']) || isset($_SESSION['username_admin'])) {
-		$id = $_GET["id"];
+if(isset(get('id')){
+	$id = get('id');
+	if (isset(session_get('username')) || isset(session_get('username_admin'))) {
 		$view = $koneksi->query("SELECT * FROM `data_diri` WHERE md5(`id`) = '$id'");
 		$rowview = mysqli_fetch_array($view);
 	}
 }
 
-elseif(isset($_GET['id']) && !isset($_POST[''])){
-	if (!isset($_SESSION['username']) || !isset($_SESSION['username_admin'])) {
-		$_SESSION['error_code'] = '40004';
+elseif(isset(get('id')) && !isset(post('')){
+	if (!isset(session_get('username')) || !isset(session_get('username_admin'))) {
+		session_add('error_code', '40004');
 		header('Location: 404.php');
 	}
 }
@@ -189,7 +185,7 @@ elseif(isset($_GET['id']) && !isset($_POST[''])){
 </head>
 <body style="background-color: #EEEEEE">
 	<?php
-	if(isset($_SESSION['username']) || isset($_SESSION['username_admin'])){ ?>
+	if(isset(session_get('username')) || isset(session_get('username_admin'))){ ?>
 		<nav class="navbar navbar-expand-lg bg-light">
 		<ul class="navbar nav">
 		<li class="nav-item">
@@ -231,7 +227,7 @@ elseif(isset($_GET['id']) && !isset($_POST[''])){
 	<div class="container clearfix card p-4 mb-5 my-md-5" style="background-color: #f9f9f9">
 		<div class="box-content">
 			<?php
-			if (isset($_GET['id'])) { ?>
+			if (isset(get('id')) { ?>
 				<p class='top-title'>
 				JAWABAN</p>";
 			<?php }
@@ -2023,21 +2019,21 @@ elseif(isset($_GET['id']) && !isset($_POST[''])){
 <!-- <button type="submit">SUBMIT</button> -->
 </div>
 <?php
-if (isset($_POST['namaDepan'], $_POST['usia'], $_POST['gender'], $_POST['email']) && !isset($_GET['id'])) { ?>
-	<input type="hidden" name="nama" value="<?= $_POST["namaDepan"]?> <?= $_POST["namaBelakang"] ?>">
-	<input type="hidden" name="usia" value="'<?= $_POST["usia"]?>">
-	<input type="hidden" name="gender" value="<?= $_POST["gender"] ?>">
-	<input type="hidden" name="email" value="<?= $_POST["email"] ?>">
+if (isset(post('namaDepan'), post('usia'), post('gender'), post('email') && !isset(get('id')))) { ?>
+	<input type="hidden" name="nama" value="<?= post("namaDepan")?> <?= post("namaBelakang") ?>">
+	<input type="hidden" name="usia" value="'<?= post("usia")?>">
+	<input type="hidden" name="gender" value="<?= post("gender") ?>">
+	<input type="hidden" name="email" value="<?= post("email") ?>">
 	<?php 
-	if(isset($_POST['id_mitra'])){ ?>
-		<input type="hidden" name="id_mitra" value="<?= $_POST["id_mitra"] ?>">
+	if(isset(post('id_mitra'))){ ?>
+		<input type="hidden" name="id_mitra" value="<?= post("id_mitra") ?>">
 	<?php }
 }
 ?>
 </form>
 <nav id="submit" class="navbar navbar-expand-lg bg-light">
 	<?php
-	if(!isset($_GET['id'])){ ?>
+	if(!isset(get('id'))){ ?>
 		<ul class="navbar nav ml-auto">
 			<li class="nav-item">
 				<span id="span"></span>
@@ -2058,9 +2054,9 @@ if (isset($_POST['namaDepan'], $_POST['usia'], $_POST['gender'], $_POST['email']
 </div>
 </body>
 <?php
-if(isset($_SESSION['username']) || isset($_SESSION['username_admin'])){
-	$_SESSION['validate'] = 1;
-	if(isset($_GET["id"])){ ?>
+if(isset(session_get('username')) || isset(session_get('username_admin'))){
+	session_add('validate', 1);
+	if(isset(get("id"))){ ?>
 		<script>
 		$('input:radio').attr('disabled','disabled');
 		<?php for ($i=1; $i < 193 ; $i++) {

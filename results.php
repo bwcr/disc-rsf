@@ -3,17 +3,17 @@ session_start();
 
 require_once('connection.php');
 
-if (isset($_POST['validate']) && isset($_POST['src'])) {
-	$_SESSION['validate'] = filter_var($_POST['validate'], FILTER_SANITIZE_STRING);
-	$_SESSION['src'] = filter_var($_POST['src'], FILTER_SANITIZE_STRING);
+if (isset(post('validate')) && isset(post('src'))) {
+	session_add('validate', filter_var(post('validate'), FILTER_SANITIZE_STRING));
+	session_add('src', filter_var(post('src'), FILTER_SANITIZE_STRING));
 }
 
-//print_r($_POST);
-if(isset($_GET['id'])){
-	if(isset($_SESSION['validate'])){
-		unset($_SESSION['validate']);
+if(isset(get('id')){
+	$id = get('id');
+	if(isset(session_get('validate'))){
+		unset(session_get('validate'));
 	}
-	$id = filter_var($_GET['id'], FILTER_SANITIZE_STRING);
+	$id = filter_var($id, FILTER_SANITIZE_STRING);
 	$view = $koneksi->query("SELECT * FROM `data_diri` WHERE md5(`id`) = '$id'");
 	$row = mysqli_fetch_array($view);
 	$viewmitra = $koneksi->query("SELECT * FROM `data_diri` INNER JOIN `mitra` ON `data_diri`.`id_mitra` = `mitra`.`id_mitra` WHERE md5(`id`) = '$id'");
@@ -56,11 +56,11 @@ if(isset($_GET['id'])){
 	}
 }
 else{
-	if(isset($_SESSION['id_mitra']) && isset($_SESSION['username']) && isset($_SESSION['password'])){
+	if(isset(session_get('id_mitra')) && isset(session_get('username')) && isset(session_get('password'))){
 		header("Location: mitra/responden.php");
 		die();
 	}
-	elseif (isset($_SESSION['username_admin']) && isset($_SESSION['password_admin'])) {
+	elseif (isset(session_get('username_admin')) && isset(session_get('password_admin'))) {
 		header("Location: admin/responden.php");
 		die();
 	}
@@ -69,13 +69,6 @@ else{
 		die();
 	}
 }
-
-// print_r($row);
-
-// if ($nama==NULL){
-// 	header('Location: ../disc-rsf/');
-// }
-
 ?>
 
 <!DOCTYPE html>
@@ -100,8 +93,8 @@ else{
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <body class="home page-template page-template-homepage-slider page-template-homepage-slider-php page page-id-93 logged-in admin-bar elementor-default elementor-page elementor-page-93 customize-support">
 	<?php
-	if(isset($_SESSION['username_admin']) || isset($_SESSION['username'])){
-		if($_SESSION['src'] === "admin"){ ?>
+	if(isset(session_get('username_admin')) || isset(session_get('username'))){
+		if(session_get('src') === "admin"){ ?>
 			<nav class="navbar navbar-expand-lg bg-light">
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 			    <span class="navbar-toggler-icon"></span>
@@ -122,7 +115,7 @@ else{
 			</ul>
 			</nav>
 		<?php }
-		elseif($_SESSION['src'] === "mitra"){ ?>
+		elseif(session_get('src') === "mitra"){ ?>
 			<nav class="navbar navbar-expand-lg bg-light">
 			<ul class="navbar nav">
 			<li class="nav-item">
@@ -140,7 +133,7 @@ else{
 	}
 	?>
 	<?php
-	if($row['id_mitra'] == NULL || isset($_SESSION['src'])){
+	if($row['id_mitra'] == NULL || isset(session_get('src'))){
 		?>
 		<div class="box-content mt-5 clearfix">
 			<p class="top-title">
@@ -332,7 +325,7 @@ for ($list = 1; $list < 13 ; $list++) {
 }
 ?>
 <?php
-if(isset($_SESSION['username']) || isset($_SESSION['username_admin']) || $row['premium'] == 1 || $row['premium'] == 0){ ?>
+if(isset(session_get('username')) || isset(session_get('username_admin')) || $row['premium'] == 1 || $row['premium'] == 0){ ?>
 	<div class="row clearfix" id="kepribadian">
 	<div id="paragraph" class="col-md-8">
 	<h3 class="content-subtitle">Deskripsi Kepribadian</h3>
@@ -348,12 +341,12 @@ if(isset($_SESSION['username']) || isset($_SESSION['username_admin']) || $row['p
 }
 ?>
 <?php
-if(!isset($_SESSION['username_admin'])){
+if(!isset(session_get('username_admin'))){
 	?>
 	<button class="mb-4" onclick="printDoc()"><i class="fas fa-cloud-download-alt"></i> UNDUH</button>
 	<?php
 }
-if (!isset($_SESSION['username_admin']) && $row['premium'] == 1) {
+if (!isset(session_get('username_admin')) && $row['premium'] == 1) {
 	?>
 	<div class="card mb-4 p-4" id="premium">
 		<div class="box-content">
@@ -384,7 +377,7 @@ function printDoc(){
 function premium(){
 	var x = confirm("Pastikan pengguna sudah membayar, lanjutkan?");
 	if (x == true) {';
-		var id = <?= $_GET['id'] ?>
+		var id = <?= session_get('id') ?>
 		location.replace("update-premium.php?id="id)
 	}
 }
@@ -392,7 +385,7 @@ function premium(){
 function deleteDoc(){
 	var x = confirm("Anda akan menghapus jawaban responden, lanjutkan?");
 	if (x == true) {
-		var id = <?= $_GET['id'] ?>
+		var id = <?= session_get('id') ?>
 		location.replace("delete.php?id="id)
 	}
 }

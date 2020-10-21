@@ -4,9 +4,9 @@ session_start();
 
 require_once('connection.php');
 
-if(isset($_POST['username']) && isset($_POST['password'])){
-	$username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
-	$password = filter_var(md5($_POST['password']), FILTER_SANITIZE_STRING);
+if(isset(post('username')) && isset(post('password'))){
+	$username = filter_var(post('username'), FILTER_SANITIZE_STRING);
+	$password = filter_var(md5(post('password'), FILTER_SANITIZE_STRING);
 
 	$select = $koneksi->query("SELECT * FROM `admin` WHERE `username` = '$username' AND `password` = '$password'");
 
@@ -14,9 +14,9 @@ if(isset($_POST['username']) && isset($_POST['password'])){
 
 	if(($select->num_rows) === 1){
 		print_r($row);
-		$_SESSION['username_admin'] = $row['username'];
-		$_SESSION['password_admin'] = $row['password'];
-		$_SESSION['email'] = $row['email'];
+		session_add('username_admin', $row['username']);
+		session_add('password_admin', $row['password']);
+		session_add('email', $row['email']);
 		header("Location: admin/dashboard.php");
 		die();
 	}
@@ -25,32 +25,32 @@ if(isset($_POST['username']) && isset($_POST['password'])){
 		$select = $koneksi->query("SELECT * FROM `mitra` WHERE `username` = '$username' AND `password` = '$password'");
 		$row = mysqli_fetch_array($select);
 		if(($select->num_rows) === 1){
-			$_SESSION['username'] = $row['username'];
-			$_SESSION['password'] = $row['password'];
-			$_SESSION['email'] = $row['email'];
-			$_SESSION['id_mitra'] = $row['id_mitra'];
-			$_SESSION['mitra'] = $row['mitra'];
-			$_SESSION['logo'] = $row['logo'];
+			session_add('username', $row['username']);
+			session_add('password', $row['password']);
+			session_add('email', $row['email']);
+			session_add('id_mitra', $row['id_mitra']);
+			session_add('mitra', $row['mitra']);
+			session_add('logo', $row['logo']);
 			header("Location: mitra/responden.php");
 			die();
 
 		}
 		elseif(($select->num_rows) === 0){
-			$_SESSION['alert-warning'] = "<strong>Username</strong> atau <strong>Password</strong> yang anda masukkan salah.";
+			session_add('alert-warning', "<strong>Username</strong> atau <strong>Password</strong> yang anda masukkan salah.");
 			header("Location: admin.php");
 			die();
 		}
 	}
 
 	else{
-		$_SESSION['alert-warning'] = "Terjadi kesalahan, coba lagi";
+		session_add('alert-warning', "Terjadi kesalahan, coba lagi");
 		header("Location: admin.php");
 		die();
 	}
 }
 
-if (isset($_POST['forgot'])) {
-	$forgot = $_POST['forgot'];
+if (isset(post('forgot'))) {
+	$forgot = post('forgot');
 	$select = $koneksi->query("SELECT `username`,`email` FROM `admin` WHERE `username` = '$forgot' OR `email` = '$forgot' UNION SELECT `username`,`email` FROM `mitra` WHERE `username` = '$forgot' OR `email` = '$forgot'");
 	$row = mysqli_fetch_array($select);
 	if(($select->num_rows) === 1){
@@ -498,7 +498,7 @@ if (isset($_POST['forgot'])) {
 			// $destination = 'admin.php';
 		include 'test-mail.php';
 		$email = substr_replace($row['email'], str_repeat('*', $p-2), 1, $p-2);
-		$_SESSION['alert-success'] = "Informasi login akan dikirimkan pada email ".$email."";
+		session_add('alert-success', "Informasi login akan dikirimkan pada email ".$email."");
 		?>
 		<script type="text/javascript">
 			window.location.href = 'admin.php';
@@ -950,7 +950,7 @@ if (isset($_POST['forgot'])) {
 			// $destination = 'admin.php';
 			require 'test-mail.php';
 			$email = substr_replace($row['email'], str_repeat('*', $p-2), 1, $p-2);
-			$_SESSION['alert-success'] = "Informasi login akan dikirimkan pada email ".$email."";
+			session_add('alert-success', "Informasi login akan dikirimkan pada email ".$email."");
 			?>
 			<script type="text/javascript">
 				window.location.href = 'admin.php';
@@ -959,27 +959,27 @@ if (isset($_POST['forgot'])) {
 			die();
 		}
 		elseif(($select->num_rows) === 0){
-			$_SESSION['alert-warning'] = "Username atau email tidak terdaftar";
+			session_add('alert-warning', "Username atau email tidak terdaftar");
 			header("Location: admin.php");
 			die();
 		}
 	}
 	else{
-		$_SESSION['alert-warning'] = "Username atau email tidak terdaftar";
+		session_add('alert-warning', "Username atau email tidak terdaftar");
 		header("Location: admin.php");
 		die();
 	}
 }
 
-if (isset($_POST['newPassword']) && isset($_POST['confirmPassword'])) {
-	$newPassword = filter_var(md5($_POST['newPassword']), FILTER_SANITIZE_STRING);
-	$email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
+if (isset(post('newPassword')) && isset(post('confirmPassword'))) {
+	$newPassword = filter_var(md5(post('newPassword')), FILTER_SANITIZE_STRING);
+	$email = filter_var(post('email'), FILTER_VALIDATE_EMAIL);
 	$select = $koneksi->query("SELECT * FROM `admin` WHERE `email` = '$email'");
 	$row = mysqli_fetch_array($select);
 	if(($select->num_rows) === 1){
 		$update = $koneksi->query("UPDATE `admin` SET `password` = '$newPassword' WHERE `email` = '$email'");
 		$delete = $koneksi->query("DELETE FROM `password_reset` WHERE `email` = '$email'");
-		$_SESSION['alert-success'] = "Reset Password sukses, silahkan login kembali";
+		session_add('alert-success', "Reset Password sukses, silahkan login kembali");
 		header("Location: admin.php");
 	}
 
@@ -989,11 +989,11 @@ if (isset($_POST['newPassword']) && isset($_POST['confirmPassword'])) {
 		if(($select->num_rows) === 1){
 			$update = $koneksi->query("UPDATE `mitra` SET `password` = '$newPassword' WHERE `email` = '$email'");
 			$delete = $koneksi->query("DELETE FROM `password_reset` WHERE `email` = '$email'");
-			$_SESSION['alert-success'] = "Reset Password sukses, silahkan login kembali";
+			session_add('alert-success', "Reset Password sukses, silahkan login kembali");
 			header("Location: admin.php");
 		}
 		elseif(($select->num_rows) === 0){
-			$_SESSION['alert-warning'] = "Terjadi kesalahan, coba kembali";
+			session_add('alert-warning', "Terjadi kesalahan, coba kembali");
 			header("Location: admin.php");
 			die();
 		}
