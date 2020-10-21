@@ -3,7 +3,8 @@ session_start();
 
 require_once 'connection.php';
 
-if (session_get('username') && session_get('password') || session_get('username_admin')) && session_get('password_admin')) {
+if (isset($_SESSION['username']) && $_SESSION['password'] || isset($_SESSION['username_admin']) && $_SESSION['password_admin']) {
+	// unset($_SESSION);
 	session_destroy();
 }
 
@@ -36,21 +37,21 @@ if (session_get('username') && session_get('password') || session_get('username_
 					<input type="password" name="password" placeholder="Password..." required="required">
 				</div>
 				<?php
-				if(session_get('alert-warning')){
+				if(isset($_SESSION['alert-warning'])){
 					?>
 					<div class="alert alert-warning" role="alert">
-						<?= session_get('alert-warning') ?>
+						<?= $_SESSION['alert-warning'] ?>
 					</div>
 					<?php
-					session_remove('alert-warning');
+					unset($_SESSION['alert-warning']);
 				}
-				elseif(session_get('alert-success')){
+				elseif(isset($_SESSION['alert-success'])){
 					?>
 					<div class="alert alert-success" role="alert">
-						<?= session_get('alert-success') ?>
+						<?= $_SESSION['alert-success'] ?>
 					</div>
 					<?php
-					session_remove('alert-success');
+					unset($_SESSION['alert-success']);
 				}
 				?>
 				<!-- Modal -->

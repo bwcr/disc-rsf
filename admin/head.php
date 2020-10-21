@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(session_get('username_admin') && !isset(session_get('password_admin')){
+if(!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])){
   header("Location: ../admin.php");
 }
 

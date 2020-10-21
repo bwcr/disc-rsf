@@ -3,28 +3,34 @@ session_start();
 
 require_once('../connection.php');
 
-if (post('username') && post('password') && post('email') && post('mitra')) {
-	$usernameMitra = post('username');
-	$passwordMitra = post('password');
-	$emailMitra = post('email');
-	$namaMitra = post('mitra');
+// $username = $_POST['username'];
+// $password = $_POST['password'];
+// $session_username = $_SESSION['username_admin']
+   ;
+// $session_password = $_SESSION['password_admin'];
+// $id = $_GET['id'];
+if (isset($_POST['username'], $_POST['password'], $_POST['email'], $_POST['mitra'])) {
+	$usernameMitra = $_POST['username'];
+	$passwordMitra = $_POST['password'];
+	$emailMitra = $_POST['email'];
+	$namaMitra = $_POST['mitra'];
 }
 
-if(session_get('username_admin') && session_get('password_admin')){
+if(isset($_SESSION['username_admin']) && isset($_SESSION['password_admin'])){
 	$select = $koneksi->query("SELECT * FROM `mitra` WHERE `username` = '$usernameMitra' OR `email` = '$emailMitra'");
 	if ($select->num_rows > 0) {
-		session_add('alert-failure', "Username atau Email telah digunakan, silahkan dicek kembali");
+		$_SESSION['alert-failure'] = "Username atau Email telah digunakan, silahkan dicek kembali";
 		header("Location: mitra.php");
 	}
-	elseif ($usernameMitra === session_get('username_admin')
-    || $emailMitra === session_get('email')) {
-		session_add("alert-failure", "Username atau Email telah digunakan, silahkan dicek kembali");
+	elseif ($usernameMitra === $_SESSION['username_admin']
+    || $emailMitra === $_SESSION['email']) {
+		$_SESSION['alert-failure'] = "Username atau Email telah digunakan, silahkan dicek kembali";
 		header("Location: mitra.php");
 	}
 	else{
 		// $insert = $koneksi->query("INSERT INTO `mitra`(`username`, `password`, `email`, `id_mitra`, `mitra`, `logo`) VALUES ('$usernameMitra','$passwordMitra','$emailMitra',NULL,'$namaMitra','default.jpg')");
 		if($koneksi->query("INSERT INTO `mitra`(`username`, `password`, `email`, `id_mitra`, `mitra`, `logo`) VALUES ('$usernameMitra',md5('$passwordMitra'),'$emailMitra',NULL,'$namaMitra','default.jpg')") === TRUE){
-			session_add('alert-success', "Data telah berhasil dimasukkan, harap menghubungi mitra terkait untuk login");
+			$_SESSION['alert-success'] = "Data telah berhasil dimasukkan, harap menghubungi mitra terkait untuk login";
 			$email = $emailMitra;
 			$nama = $namaMitra;
 			$subject = "[NOTICE] Halo, Mitra!";
@@ -473,7 +479,7 @@ if(session_get('username_admin') && session_get('password_admin')){
 			print_r("Sukses");
 		}
 		else{
-			session_add('alert-failure', "Data gagal dimasukkan, mohon input kembali")
+			$_SESSION['alert-failure'] = "Data gagal dimasukkan, mohon input kembali";
 			print_r("Gagal");
 		}
 		header("Location: mitra.php");
@@ -481,7 +487,7 @@ if(session_get('username_admin') && session_get('password_admin')){
 }
 
 else{
-	session_add('alert-warning', "Harap Login kembali")
+	$_SESSION['alert-warning'] = "Harap Login kembali";
 	header("Location: ../admin.php");	
 }
 

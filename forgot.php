@@ -3,14 +3,14 @@ require_once 'connection.php';
 
 session_start();
 
-if (get("key") && get("email")){
-	$key = get("key", FILTER_SANITIZE_STRING);	
-	$email = get("email", FILTER_VALIDATE_EMAIL);
+if (isset($_GET["key"]) && isset($_GET["email"])){
+	$key = filter_var($_GET["key"], FILTER_SANITIZE_STRING);
+	$email = filter_var($_GET["email"], FILTER_VALIDATE_EMAIL);
 	$curDate = date("Y-m-d H:i:s");
 	$select = $koneksi->query("SELECT * FROM `password_reset` WHERE `key` = '$key' AND `email` = '$email'");
 	$row = mysqli_fetch_array($select);
 	if($row == ""){
-		session_add('alert-warning', "Invalid Link");
+		$_SESSION['alert-warning'] = "Invalid Link";
 		header("Location: admin.php");
 		die();
 	}
@@ -93,14 +93,14 @@ if (get("key") && get("email")){
 	<?php
 }
 else{
-	session_add('alert-warning', "Link expired");
+	$_SESSION['alert-warning'] = "Link expired";
 	header("Location: admin.php");
 	die();
 }
 }
 }
 else{
-	session_add('alert-warning', "Link Invalid");
+	$_SESSION['alert-warning'] = "Link Invalid";
 	header("Location: admin.php");
 	die();	
 }
