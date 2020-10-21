@@ -3,10 +3,11 @@ session_start();
 
 require_once('../connection.php');
 
-if(isset($_GET['id']))
+$id = get('id');
+
+if(isset($id))
 {
-	$id = $_GET['id'];
-	if(isset($_SESSION['username_admin']) && isset($_SESSION['password_admin'])){
+	if(session_get('username_admin') && session_get('password_admin')){
 		$select = $koneksi->query("SELECT * FROM `mitra` WHERE md5(`id_mitra`) = '$id'");
 		$rowselect = mysqli_fetch_array($select);
 		$delete = $koneksi->query("DELETE FROM `mitra` WHERE md5(`id_mitra`) = '$id'");
@@ -14,11 +15,11 @@ if(isset($_GET['id']))
 		if($rowselect['logo'] != 'default.jpg'){
 			unlink('../image/logo/'.$rowselect['logo'].'');
 		}
-		$_SESSION['alert-failure'] = "Mitra berhasil dihapus";
+		session_add('alert-failure', "Mitra berhasil dihapus"
 		header("Location: mitra.php");
 	}
 	else{
-		$_SESSION['alert-warning'] = "Harap Login kembali";
+		session_add('alert-warning', "Harap Login kembali"
 		header("Location: ../admin.php");
 	}
 }

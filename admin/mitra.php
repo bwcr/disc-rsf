@@ -215,17 +215,17 @@
     </div>
     </main>
     <?php
-      if(isset($_SESSION['alert-success']) || isset($_SESSION['alert-failure'])){
+      if(session_get('alert-success') || session_get('alert-failure')){
         ?>
     <div id="alertModal" class="modal">
       <?php 
-          if (isset($_SESSION['alert-success'])) { ?>
-      <p><?= $_SESSION['alert-success'] ?></p>
-      <?php unset($_SESSION['alert-success']);
+          if (session_get('alert-success')) { ?>
+      <p><?= session_get('alert-success') ?></p>
+      <?php session_remove('alert-success');
           }
-          elseif (isset($_SESSION['alert-failure'])) { ?>
-      <p><?= $_SESSION['alert-failure'] ?></p>
-      <?php unset($_SESSION['alert-failure']);
+          elseif (session_get('alert-failure')) { ?>
+      <p><?= session_get('alert-failure') ?></p>
+      <?php session_remove('alert-failure');
           }
           ?>
       <a href="#" rel="modal:close">Dismiss</a>
