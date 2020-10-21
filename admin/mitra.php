@@ -215,11 +215,11 @@
     </div>
     </main>
     <?php
-      if(isset($_SESSION['alert-success']) || isset($_SESSION['alert-failure'])){
+      if(session_get('alert-success') || session_get('alert-failure')){
         ?>
     <div id="alertModal" class="modal">
       <?php 
-          if (isset($_SESSION['alert-success'])) { ?>
+          if (session_get('alert-success')) { ?>
       <p><?= $_SESSION['alert-success'] ?></p>
       <?php unset($_SESSION['alert-success']);
           }
