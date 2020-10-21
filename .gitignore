@@ -4,6 +4,7 @@ image/
 admin-update.php
 addanswer.php
 js/disc.js
+js/pagination.js
 admin/node_modules
 # css/benten.css
 node_modules/
