@@ -12,7 +12,6 @@ if (get("key") && get("email")){
 	if($row == ""){
 		session_add('alert-warning', "Invalid Link");
 		header("Location: admin.php");
-		die();
 	}
 	else{
 		$expDate = $row['expDate'];
@@ -95,14 +94,12 @@ if (get("key") && get("email")){
 else{
 	session_add('alert-warning', "Link expired");
 	header("Location: admin.php");
-	die();
 }
 }
 }
 else{
 	session_add('alert-warning', "Link Invalid");
 	header("Location: admin.php");
-	die();	
 }
 
 ?>
