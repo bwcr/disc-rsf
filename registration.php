@@ -15,13 +15,12 @@ if(isset($_GET['id_mitra']) && isset($_GET['nama']) && isset($_GET['email'])){
 	$rowmitra = mysqli_fetch_array($viewmitra);
 	$viewresponden = $koneksi->query("SELECT * FROM `data_diri_pending` WHERE `email` = '$email' AND `nama` = '$nama'");
 	if ($viewresponden->num_rows == 0) {
-		$message = "Data anda tidak masuk ke dalam mitra";
-		echo "<script type='text/javascript'>
-		alert('$message');
+		$message = "Data anda tidak masuk ke dalam mitra"; ?>
+		<script type='text/javascript'>
+		alert('<?= $message ?>');
 		window.location.href = 'index.php';
-		</script>";
-		// header("Location: index.php");
-		die();
+		</script>
+	<?php
 	}
 	else{
 		$rowresponden = mysqli_fetch_array($viewresponden);
@@ -51,12 +50,15 @@ if(isset($_GET['id_mitra']) && isset($_GET['nama']) && isset($_GET['email'])){
 	<div class="container justify-content-center p-0">
 		<div class="border bg-white border-light shadow-sm m-md-5 mx-auto m-0 justify-content-md-center">
 			<?php
-			if (isset($rowmitra['id_mitra'])) {
-				echo '<div class="py-5 box-content clearfix mx-4 mx-sm-5">';
-				echo '<img width="200px" class="mx-auto mb-4 d-block" src="image/logo/'.$rowmitra["logo"].'">';
+			if (isset($rowmitra['id_mitra'])) { ?>
+				<div class="py-5 box-content clearfix mx-4 mx-sm-5">
+				<img width="200px" class="mx-auto mb-4 d-block" src="image/logo/'<?= $rowmitra["logo"] ?>">
+			<?php
 			}
-			else{
-				echo '<div class="box-content py-4 clearfix mx-4 mx-sm-5">';
+			else{ 
+			?>
+				<div class="box-content py-4 clearfix mx-4 mx-sm-5">
+			<?php
 			}
 			?>
 			<p class="top-title">
@@ -74,24 +76,25 @@ if(isset($_GET['id_mitra']) && isset($_GET['nama']) && isset($_GET['email'])){
 						</div>					
 					</div>
 					<?php
-					if (isset($rowresponden['nama']) && isset($rowresponden['email'])) {
-						echo '<input type="hidden" name="nama" value="'.$rowresponden["nama"].'" placeholder="Nama Lengkap..." required="required"> ';
-						?>
+					if (isset($rowresponden['nama']) && isset($rowresponden['email'])) { ?>
+						<input type="hidden" name="nama" value="<?= $rowresponden["nama"] ?>" placeholder="Nama Lengkap..." required="required">
 						<table class="table table-borderless mx-auto w-75">
 							<tbody>
 								<th>
-									<?php echo "<td>Nama: ".$nama."</td>";?>
-									<?php echo "<td>Email: ".$email."</td>";?>
+									<td>Nama: <?= $nama ?></td>
+									<td>Email: <?= $email ?></td>
 								</th>
 							</tbody>
 						</table>
-						<?php
-						echo '<input type="text" name="usia" placeholder="Usia..." required="required">';
-						echo '<input type="hidden" value="'.$rowresponden['email'].'" name="email" placeholder="Email..." required="required">';
+						<input type="text" name="usia" placeholder="Usia..." required="required">
+						<input type="hidden" value="<?= $rowresponden['email'] ?>" name="email" placeholder="Email..." required="required">
+					<?php
 					}
 					else{
-						echo '<input type="text" name="usia" placeholder="Usia..." required="required">';
-						echo '<input type="email" name="email" placeholder="Email..." required="required">';
+					?>
+						<input type="text" name="usia" placeholder="Usia..." required="required">
+						<input type="email" name="email" placeholder="Email..." required="required">
+					<?php
 					}
 					?>
 				</div>
@@ -111,8 +114,9 @@ if(isset($_GET['id_mitra']) && isset($_GET['nama']) && isset($_GET['email'])){
 				</div>
 				<br>
 				<?php
-				if(isset($rowresponden['id_mitra'])){
-					echo '<input type="hidden" name="id_mitra" value="'.$rowresponden["id_mitra"].'">';
+				if(isset($rowresponden['id_mitra'])){ ?>
+					<input type="hidden" name="id_mitra" value="<?= $rowresponden["id_mitra"] ?>>
+				<?php
 				}
 				?>
 				<button type="submit">SUBMIT</button>

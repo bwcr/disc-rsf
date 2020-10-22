@@ -28,14 +28,14 @@
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                       <label class="mdc-text-field w-100">
                         <h2 class="mdc-typography--subheading1">Username</h2>
-                        <input name="username" type="text" placeholder="Username..." required="required" class="mdc-text-field__input" value=<?php echo '"'.$_SESSION['username_admin'].'"' ?>>
+                        <input name="username" type="text" placeholder="Username..." required="required" class="mdc-text-field__input" value="<?= $_SESSION['username_admin'] ?>">
                         <div class="mdc-text-field__bottom-line"></div>
                       </label>
                     </div>
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                       <label class="mdc-text-field w-100">
                         <h2 class="mdc-typography--subheading1">Email</h2>
-                        <input name="email" type="email" placeholder="email..." required="required" class="mdc-text-field__input" value=<?php echo '"'.$_SESSION["email"].'"' ?>>
+                        <input name="email" type="email" placeholder="email..." required="required" class="mdc-text-field__input" value="<?= $_SESSION["email"] ?>">
                         <div class="mdc-text-field__bottom-line"></div>
                       </label>
                     </div>
@@ -88,23 +88,19 @@
       ?>
       <div id="alertModal" class="modal">
         <?php 
-        if (isset($_SESSION['alert-success'])) {
-          echo "<p>".$_SESSION['alert-success']."</p>";
+        if (isset($_SESSION['alert-success'])) { ?>
+          <p><?= $_SESSION['alert-success'] ?></p>
+        <?php
           unset($_SESSION['alert-success']);
         }
-        elseif (isset($_SESSION['alert-failure'])) {
-          echo "<p>".$_SESSION['alert-failure']."</p>";
+        elseif (isset($_SESSION['alert-failure'])) { ?>
+          <p><?= $_SESSION['alert-failure'] ?></p>
+        <?php
           unset($_SESSION['alert-failure']);
-        }
-        else{
-
-        }
+        }}
         ?>
         <a href="#" rel="modal:close">Dismiss</a>
       </div>
-      <?php
-    }
-    ?>
     <!-- partial:partials/_footer.php -->
     <?php
     include 'partials/_footer.php';

@@ -40,7 +40,7 @@ if (isset($_SESSION['username']) && $_SESSION['password'] || isset($_SESSION['us
 				if(isset($_SESSION['alert-warning'])){
 					?>
 					<div class="alert alert-warning" role="alert">
-						<?php echo($_SESSION['alert-warning']); ?>
+						<?= $_SESSION['alert-warning']?>
 					</div>
 					<?php
 					unset($_SESSION['alert-warning']);
@@ -48,7 +48,7 @@ if (isset($_SESSION['username']) && $_SESSION['password'] || isset($_SESSION['us
 				elseif(isset($_SESSION['alert-success'])){
 					?>
 					<div class="alert alert-success" role="alert">
-						<?php echo($_SESSION['alert-success']); ?>
+						<?= $_SESSION['alert-success'] ?>
 					</div>
 					<?php
 					unset($_SESSION['alert-success']);

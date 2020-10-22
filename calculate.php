@@ -143,7 +143,6 @@ switch ($pD) {
 	$ppD = 7.5;
 	break;
 	default:
-	echo "Error Perhitungan";
 	break;
 }
 
@@ -209,7 +208,6 @@ switch ($pI) {
 	$ppI = 8;
 	break;
 	default:
-	echo "Error Perhitungan";
 	break;
 }
 
@@ -278,7 +276,6 @@ switch ($pS) {
 	$ppS = 7.5;
 	break;
 	default:
-	echo "Ada kesalahan pada program";
 	break;
 }
 
@@ -347,7 +344,6 @@ switch ($pC) {
 	$ppC = 8;
 	break;
 	default:
-	echo "Ada kesalahan pada program, anda Indigo";
 	break;
 }
 
@@ -416,7 +412,6 @@ switch ($kD) {
 	$kkD = -7.5;
 	break;
 	default:
-	echo "Ada kesalahan pada program, anda Indigo";
 	break;
 }
 
@@ -485,7 +480,6 @@ switch ($kI) {
 	$kkI = -8;
 	break;
 	default:
-	echo "hore";
 	break;
 }
 
@@ -554,7 +548,6 @@ switch ($kS) {
 	$kkS = -8;
 	break;
 	default:
-	echo "Ada kesalahan pada program, anda Indigo";
 	break;
 }
 
@@ -623,7 +616,6 @@ switch ($kC) {
 	$kkC = -8;
 	break;
 	default:
-	echo "Ada kesalahan pada program, anda Indigo";
 	break;
 }
 
@@ -764,7 +756,6 @@ switch ($ttlD) {
 	$ttllD = 8;
 	break;
 	default:
-	echo "Ada kesalahan pada program";
 	break;
 }
 
@@ -866,7 +857,6 @@ switch ($ttlI) {
 	$ttllI = 8;
 	break;
 	default:
-	echo "Ada kesalahan pada program, anda Indigo";
 	break;
 }
 
@@ -985,7 +975,6 @@ switch ($ttlS) {
 	$ttllS = 8;
 	break;
 	default:
-	echo "Ada kesalahan pada program, anda Indigo";
 	break;
 }
 
@@ -1102,7 +1091,6 @@ switch ($ttlC) {
 	$ttllC = 8;
 	break;
 	default:
-	echo "Ada kesalahan pada program, anda Indigo";
 	break;
 }
 
@@ -1231,7 +1219,6 @@ switch ($discp) {
 	$infop = 40;
 	break;
 	default:
-	echo "ok<br>";
 	break;
 }
 
@@ -1492,7 +1479,6 @@ switch ($discttl) {
 	$infottl = 40;
 	break;
 	default:
-	echo "ok<br>";
 	break;
 }
 
@@ -1944,8 +1930,6 @@ if(isset($_POST)){
 			$body .= '</html>';
 			include 'test-mail.php';
 			header("Location: results.php?id=".md5($last_id)."");
-		} else {
-			echo "gagal";
 		}
 	}
 	elseif(isset($_POST['id_mitra'])){
@@ -1960,9 +1944,6 @@ if(isset($_POST)){
 			}
 			$_SESSION['validate'] = 1;
 			header("Location: results.php?id=".md5($last_id)."");
-		} 
-		else {
-			echo "gagal";
 		}
 	}
 }

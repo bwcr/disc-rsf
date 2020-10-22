@@ -40,7 +40,7 @@ if(isset($_SESSION['username_admin']) && isset($_SESSION['password_admin'])){
 		if($select->num_rows > 0){
 			$_SESSION['alert-failure'] = "Username atau Email telah digunakan";
 			header("Location: editProfil.php");
-			die();
+			
 		}
 		else{
 			$update = $koneksi->query("UPDATE `admin` SET `username`='$username', `email`='$email' WHERE `username` = '$session_username' AND `password` = '$session_password'");

@@ -222,11 +222,11 @@
       <?php 
           if (isset($_SESSION['alert-success'])) { ?>
             <p><?= htmlentities($_SESSION['alert-success'], ENT_QUOTES, 'UTF-8') ?></p>
-            <?php unset($_SESSION['alert-success'], ENT_QUOTES, 'UTF-8');
+            <?php unset($_SESSION['alert-success']);
           }
-          elseif (isset($_SESSION['alert-failure'], ENT_QUOTES, 'UTF-8')) { ?>
+          elseif (isset($_SESSION['alert-failure'])) { ?>
             <p><?= htmlentities($_SESSION['alert-failure'], ENT_QUOTES, 'UTF-8') ?></p>
-            <?php unset($_SESSION['alert-failure'], ENT_QUOTES, 'UTF-8');
+            <?php unset($_SESSION['alert-failure']);
           }
           ?>
       <a href="#" rel="modal:close">Dismiss</a>

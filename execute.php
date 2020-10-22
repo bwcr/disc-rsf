@@ -7,11 +7,4 @@ while ($i <= 192) {
 	$insert = $koneksi->query("SELECT `$answer` FROM `data_diri` WHERE `id` = $i");
 	$i++;
 }
-if($insert){
-		echo "success";
-	}
-	else{
-		echo "fail";
-	}
-
 ?>

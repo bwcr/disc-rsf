@@ -17,7 +17,7 @@ if(isset($_POST['username']) && isset($_POST['password'])){
 		$_SESSION['password_admin'] = $row['password'];
 		$_SESSION['email'] = $row['email'];
 		header("Location: admin/dashboard.php");
-		die();
+		
 	}
 
 	if(($select->num_rows) === 0){
@@ -31,20 +31,20 @@ if(isset($_POST['username']) && isset($_POST['password'])){
 			$_SESSION['mitra'] = $row['mitra'];
 			$_SESSION['logo'] = $row['logo'];
 			header("Location: mitra/responden.php");
-			die();
+			
 
 		}
 		elseif(($select->num_rows) === 0){
 			$_SESSION['alert-warning'] = "<strong>Username</strong> atau <strong>Password</strong> yang anda masukkan salah.";
 			header("Location: admin.php");
-			die();
+			
 		}
 	}
 
 	else{
 		$_SESSION['alert-warning'] = "Terjadi kesalahan, coba lagi";
 		header("Location: admin.php");
-		die();
+		
 	}
 }
 
@@ -503,7 +503,7 @@ if (isset($_POST['forgot'])) {
 			window.location.href = 'admin.php';
 		</script>
 		<?php
-		die();
+		
 	}
 	elseif(($select->num_rows) === 0){
 		$select = $koneksi->query("SELECT `username`,`email`,`password` FROM `mitra` WHERE `username` = '$forgot' OR `email` = '$forgot'");
@@ -955,18 +955,18 @@ if (isset($_POST['forgot'])) {
 				window.location.href = 'admin.php';
 			</script>
 			<?php
-			die();
+			
 		}
 		elseif(($select->num_rows) === 0){
 			$_SESSION['alert-warning'] = "Username atau email tidak terdaftar";
 			header("Location: admin.php");
-			die();
+			
 		}
 	}
 	else{
 		$_SESSION['alert-warning'] = "Username atau email tidak terdaftar";
 		header("Location: admin.php");
-		die();
+		
 	}
 }
 
@@ -996,7 +996,7 @@ if (isset($_POST['newPassword']) && isset($_POST['confirmPassword'])) {
 		elseif(($select->num_rows) === 0){
 			$_SESSION['alert-warning'] = "Terjadi kesalahan, coba kembali";
 			header("Location: admin.php");
-			die();
+			
 		}
 	}
 }

@@ -43,5 +43,4 @@ try {
 } catch (Exception $e) {
     $_SESSION['alert-failure'] = "Message could not be sent";
     header("Location: $destination");
-    die();
 }

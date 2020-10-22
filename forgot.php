@@ -12,7 +12,6 @@ if (isset($_GET["key"]) && isset($_GET["email"])){
 	if($row == ""){
 		$_SESSION['alert-warning'] = "Invalid Link";
 		header("Location: admin.php");
-		die();
 	}
 	else{
 		$expDate = $row['expDate'];
@@ -45,7 +44,7 @@ if (isset($_GET["key"]) && isset($_GET["email"])){
 					<div class="mb-3">
 						<input required="required" id="newPassword" type="password" name="newPassword" placeholder="Password Baru..">
 						<input required="required" id="confirmPassword" type="password" name="confirmPassword" placeholder="Password Konfirmasi..">
-						<input type="hidden" name="email" value="<?php echo $email;?>">
+						<input type="hidden" name="email" value="<?= $email ?>">
 					</div>
 					<br>		
 					<button type="submit">SUBMIT</button>
@@ -95,14 +94,12 @@ if (isset($_GET["key"]) && isset($_GET["email"])){
 else{
 	$_SESSION['alert-warning'] = "Link expired";
 	header("Location: admin.php");
-	die();
 }
 }
 }
 else{
 	$_SESSION['alert-warning'] = "Link Invalid";
 	header("Location: admin.php");
-	die();	
 }
 
 ?>
