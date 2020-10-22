@@ -6,6 +6,7 @@ addanswer.php
 admin/gulpfile.js
 admin/js/graph.js
 js/disc.js
+admin/scss
 js/pagination.js
 admin/node_modules
 node_modules/
