@@ -3,7 +3,7 @@ session_start();
 
 require_once('connection.php');
 if(isset($_GET['id'])){
-	$id = $_GET['id'];
+	$id = FILTER_INPUT(INPUT_GET, 'id');
 }
 
 elseif(isset($_SESSION['username_admin'])){

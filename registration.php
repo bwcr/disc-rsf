@@ -8,9 +8,9 @@ if (isset($_SESSION['username']) && $_SESSION['password']) {
 }
 
 if(isset($_GET['id_mitra']) && isset($_GET['nama']) && isset($_GET['email'])){
-	$id = filter_var($_GET['id_mitra'], FILTER_SANITIZE_STRING);
-	$nama = filter_var($_GET['nama'], FILTER_SANITIZE_STRING);
-	$email = filter_var($_GET['email'], FILTER_SANITIZE_EMAIL);
+	$id = FILTER_INPUT(INPUT_GET, 'id_mitra');
+	$nama = FILTER_INPUT(INPUT_GET, 'nama');
+	$email = FILTER_INPUT(INPUT_GET, 'email');
 	$viewmitra = $koneksi->query("SELECT * FROM `mitra` WHERE `id_mitra` = '$id'");
 	$rowmitra = mysqli_fetch_array($viewmitra);
 	$viewresponden = $koneksi->query("SELECT * FROM `data_diri_pending` WHERE `email` = '$email' AND `nama` = '$nama'");

@@ -8,12 +8,12 @@ if(!isset($id)) {
 		header("Location: index.php");
 	}
 	if($_POST) {
-		$nama = $_POST['nama'];
-		$usia = $_POST['usia'];
-		$jk = $_POST['gender'];
-		$email = $_POST['email'];
+		$nama = FILTER_INPUT(INPUT_POST, 'nama');
+		$usia = FILTER_INPUT(INPUT_POST, 'usia');
+		$jk = FILTER_INPUT(INPUT_POST, 'gender');
+		$email = FILTER_INPUT(INPUT_POST, 'email');
 		if($_POST['id_mitra']){
-			$id_mitra = $_POST['id_mitra'];
+			$id_mitra = FILTER_INPUT(INPUT_POST, 'id_mitra');
 		}
 	}
 	$ttlD = 0;
@@ -1494,8 +1494,8 @@ if(isset($_POST)){
 				$masuk = $koneksi->query("UPDATE `data_diri` SET `$answer` = '$hidden' WHERE id = '$last_id'");
 			}
 			$_SESSION['validate'] = 1;
-			$email = $_POST['email'];
-			$nama = $_POST['nama'];
+			$email = FILTER_INPUT(INPUT_POST, 'email');
+			$nama = FILTER_INPUT(INPUT_POST, 'nama');
 			$subject = "[NOTICE] Review DISC Test Griya Psikologi";
 			$body = '<!DOCTYPE html>';
 			$body .= '<html style="height: 100%;">';

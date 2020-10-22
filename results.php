@@ -4,15 +4,15 @@ session_start();
 require_once('connection.php');
 
 if (isset($_POST['validate']) && isset($_POST['src'])) {
-	$_SESSION['validate'] = filter_var($_POST['validate'], FILTER_SANITIZE_STRING);
-	$_SESSION['src'] = filter_var($_POST['src'], FILTER_SANITIZE_STRING);
+	$_SESSION['validate'] = FILTER_INPUT(INPUT_POST, 'validate');
+	$_SESSION['src'] = FILTER_INPUT(INPUT_POST, 'src');
 }
 
 if(isset($_GET['id'])){
 	if(isset($_SESSION['validate'])){
 		unset($_SESSION['validate']);
 	}
-	$id = $_GET['id'];
+	$id = FILTER_INPUT(INPUT_GET, 'id');
 	$view = $koneksi->query("SELECT * FROM `data_diri` WHERE md5(`id`) = '$id'");
 	$row = mysqli_fetch_array($view);
 	$viewmitra = $koneksi->query("SELECT * FROM `data_diri` INNER JOIN `mitra` ON `data_diri`.`id_mitra` = `mitra`.`id_mitra` WHERE md5(`id`) = '$id'");
@@ -378,7 +378,7 @@ function premium(){
 	var x = confirm("Pastikan pengguna sudah membayar, lanjutkan?");
 	if (x == true) {
 	<?php
-	$id = $_GET['id'];
+	$id = FILTER_INPUT(INPUT_GET, 'id');
 	?>
 	location.replace("update-premium.php?id=<?= $id ?>")
 	}	
@@ -387,7 +387,7 @@ function premium(){
 function deleteDoc(){
 var x = confirm("Anda akan menghapus jawaban responden, lanjutkan?")
 	if (x == true) {
-	$id = $_GET['id'];
+	$id = FILTER_INPUT(INPUT_GET, 'id');
 	location.replace("delete.php?id=<?= $id ?>")
 	}
 }
