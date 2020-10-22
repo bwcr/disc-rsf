@@ -3,19 +3,11 @@ session_start();
 
 require_once('../connection.php');
 
-// $username = $_POST['username'];
-// $password = $_POST['password'];
-$session_username = $_SESSION['username_admin'];
-$session_password = $_SESSION['password_admin'];
-
-// if($_GET == NULL){
-// 	alert('Terjadi kesalahan');
-// 	header("Location: mitra.php");
-
-if(isset($_SESSION['username_admin']
-) && isset($_SESSION['password_admin'])){
-	if(isset($_POST['password'])){
-		$password = md5($_POST['password']);
+if(isset($_SESSION['username_admin']) && isset($_SESSION['password_admin'])){
+	$session_username = $_SESSION['username_admin'];
+	$session_password = $_SESSION['password_admin'];
+	if(isset($_POST['password'], $_POST['newPassword'], $_POST['confirmPassword'])){
+		$password = filter_var(md5($_POST['password']), FILTER_SANITIZE_STRING);
 		$newPassword = md5($_POST['newPassword']);
 		$confirmPassword = md5($_POST['confirmPassword']);
 
@@ -41,9 +33,9 @@ if(isset($_SESSION['username_admin']
 			header("Location: editProfil.php");
 		}
 	}
-	if (isset($_POST['username']) && isset($_POST['email'])) {
-		$username = $_POST['username'];
-		$email = $_POST['email'];
+	if (isset($_POST['username'], $_POST['email'])) {
+		$username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
+		$email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 		$select = $koneksi->query("SELECT * FROM `mitra` WHERE `username` = '$username' OR `email` = '$email'");
 		if($select->num_rows > 0){
 			$_SESSION['alert-failure'] = "Username atau Email telah digunakan";

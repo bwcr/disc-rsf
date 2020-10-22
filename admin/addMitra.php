@@ -3,25 +3,14 @@ session_start();
 
 require_once('../connection.php');
 
-// $username = $_POST['username'];
-// $password = $_POST['password'];
-// $session_username = $_SESSION['username_admin']
-   ;
-// $session_password = $_SESSION['password_admin'];
-// $id = $_GET['id'];
+if (isset($_POST['username'], $_POST['password'], $_POST['email'], $_POST['mitra'])) {
+	$usernameMitra = $_POST['username'];
+	$passwordMitra = $_POST['password'];
+	$emailMitra = $_POST['email'];
+	$namaMitra = $_POST['mitra'];
+}
 
-$usernameMitra = $_POST['username'];
-$passwordMitra = $_POST['password'];
-$emailMitra = $_POST['email'];
-$namaMitra = $_POST['mitra'];
-
-// if($_GET == NULL){
-// 	alert('Terjadi kesalahan');
-// 	header("Location: mitra.php");
-// }
-
-if(isset($_SESSION['username_admin']
-   ) && isset($_SESSION['password_admin'])){
+elseif(isset($_SESSION['username_admin']) && isset($_SESSION['password_admin'])){
 	$select = $koneksi->query("SELECT * FROM `mitra` WHERE `username` = '$usernameMitra' OR `email` = '$emailMitra'");
 	if ($select->num_rows > 0) {
 		$_SESSION['alert-failure'] = "Username atau Email telah digunakan, silahkan dicek kembali";
@@ -477,10 +466,10 @@ if(isset($_SESSION['username_admin']
 		// $destination = 'admin.php';
 			include '../test-mail.php';
 			?>
-			<script type="text/javascript">
-			window.location.href = 'mitra.php';
-			</script>
-			<?php
+<script type="text/javascript">
+	window.location.href = 'mitra.php';
+</script>
+<?php
 		}
 		else{
 			$_SESSION['alert-failure'] = "Data gagal dimasukkan, mohon input kembali";

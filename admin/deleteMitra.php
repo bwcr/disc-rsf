@@ -3,7 +3,9 @@ session_start();
 
 require_once('../connection.php');
 
-$id = $_GET['id'];
+if(isset($_GET['id'])){
+	$id = $_GET['id'];
+}
 
 if(isset($_SESSION['username_admin']) && isset($_SESSION['password_admin'])){
 	$select = $koneksi->query("SELECT * FROM `mitra` WHERE md5(`id_mitra`) = '$id'");

@@ -5,8 +5,8 @@ session_start();
 require_once('connection.php');
 
 if(isset($_POST['username']) && isset($_POST['password'])){
-	$username = $_POST['username'];
-	$password = md5($_POST['password']);
+	$username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
+	$password = filter_var(md5($_POST['password']), FILTER_SANITIZE_STRING);
 
 	$select = $koneksi->query("SELECT * FROM `admin` WHERE `username` = '$username' AND `password` = '$password'");
 
@@ -48,7 +48,7 @@ if(isset($_POST['username']) && isset($_POST['password'])){
 	}
 }
 
-if ($_POST['forgot']) {
+if (isset($_POST['forgot'])) {
 	$forgot = $_POST['forgot'];
 	$select = $koneksi->query("SELECT `username`,`email` FROM `admin` WHERE `username` = '$forgot' OR `email` = '$forgot' UNION SELECT `username`,`email` FROM `mitra` WHERE `username` = '$forgot' OR `email` = '$forgot'");
 	$row = mysqli_fetch_array($select);
@@ -971,8 +971,10 @@ if ($_POST['forgot']) {
 }
 
 if (isset($_POST['newPassword']) && isset($_POST['confirmPassword'])) {
-	$newPassword = md5($_POST['newPassword']);
-	$email = $_POST['email'];
+	$newPassword = filter_var(md5($_POST['newPassword']), FILTER_SANITIZE_STRING);
+	if(isset($_POST['email'])){
+		$email = $_POST['email'];
+	}
 	$select = $koneksi->query("SELECT * FROM `admin` WHERE `email` = '$email'");
 	$row = mysqli_fetch_array($select);
 	if(($select->num_rows) === 1){

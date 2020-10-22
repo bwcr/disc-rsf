@@ -7,12 +7,14 @@ if(!isset($id)) {
 	if(!isset($_POST['nama'])){
 		header("Location: index.php");
 	}
-	$nama = $_POST['nama'];
-	$usia = $_POST['usia'];
-	$jk = $_POST['gender'];
-	$email = $_POST['email'];
-	if($_POST['id_mitra']){
-		$id_mitra = $_POST['id_mitra'];
+	if($_POST) {
+		$nama = $_POST['nama'];
+		$usia = $_POST['usia'];
+		$jk = $_POST['gender'];
+		$email = $_POST['email'];
+		if($_POST['id_mitra']){
+			$id_mitra = $_POST['id_mitra'];
+		}
 	}
 	$ttlD = 0;
 	$ttlI = 0;
@@ -29,55 +31,52 @@ if(!isset($id)) {
 	$kC = 0;
 	$kStar = 0;
 
-	for($i=1; $i < 25; ++$i) {
-		if($_POST['p'][$i] == 'D'){
-			++$ttlD;
-			++$pD;
+	if (isset($_POST['p'], $_POST['k'])) {
+		for($i=1; $i < 25; ++$i) {
+			if($_POST['p'][$i] == 'D'){
+				++$ttlD;
+				++$pD;
+			}
+			if($_POST['p'][$i] == 'I'){
+				++$ttlI;
+				++$pI;
+			}
+			if($_POST['p'][$i] == 'S'){
+				++$ttlS;
+				++$pS;
+			}
+			if($_POST['p'][$i] == 'C'){
+				++$ttlC;
+				++$pC;
+			}
+			if($_POST['p'][$i] == '*'){
+				++$pStar;
+			}
 		}
-		if($_POST['p'][$i] == 'I'){
-			++$ttlI;
-			++$pI;
-		}
-		if($_POST['p'][$i] == 'S'){
-			++$ttlS;
-			++$pS;
-		}
-		if($_POST['p'][$i] == 'C'){
-			++$ttlC;
-			++$pC;
-		}
-		if($_POST['p'][$i] == '*'){
-			++$pStar;
-		}
-	}
-
-	for($i=1; $i < 25; ++$i) {
-		if($_POST['k'][$i] == 'D'){
-			--$ttlD;
-			++$kD;
-		}
-		if($_POST['k'][$i] == 'I'){
-			--$ttlI;
-			++$kI;
-		}
-		if($_POST['k'][$i] == 'S'){
-			--$ttlS;
-			++$kS;
-		}
-		if($_POST['k'][$i] == 'C'){
-			--$ttlC;
-			++$kC;
-		}
-		if($_POST['k'][$i] == '*'){
-			++$kStar;
+		
+		for($i=1; $i < 25; ++$i) {
+			if($_POST['k'][$i] == 'D'){
+				--$ttlD;
+				++$kD;
+			}
+			if($_POST['k'][$i] == 'I'){
+				--$ttlI;
+				++$kI;
+			}
+			if($_POST['k'][$i] == 'S'){
+				--$ttlS;
+				++$kS;
+			}
+			if($_POST['k'][$i] == 'C'){
+				--$ttlC;
+				++$kC;
+			}
+			if($_POST['k'][$i] == '*'){
+				++$kStar;
+			}
 		}
 	}
 }
-
-
-/*echo "i = $i, D = $ttlD, I = $ttlI, S = $ttlS, C = $ttlC <br>";
-echo "pD = $pD, pI = $pI, pS = $pS, pC = $pC <br>";
-echo "kD = $kD,kI = $kI, kS = $kS, kC = $kC <br>";*/
 
 switch ($pD) {
 	case '0':

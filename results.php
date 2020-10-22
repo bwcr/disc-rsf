@@ -4,8 +4,8 @@ session_start();
 require_once('connection.php');
 
 if (isset($_POST['validate']) && isset($_POST['src'])) {
-	$_SESSION['validate'] = $_POST['validate'];
-	$_SESSION['src'] = $_POST['src'];
+	$_SESSION['validate'] = filter_var($_POST['validate'], FILTER_SANITIZE_STRING);
+	$_SESSION['src'] = filter_var($_POST['src'], FILTER_SANITIZE_STRING);
 }
 
 if(isset($_GET['id'])){

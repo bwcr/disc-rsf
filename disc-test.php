@@ -27,7 +27,7 @@ if(isset($_POST)){
 
 if(isset($_GET['id'])){
 	if (isset($_SESSION['username']) || isset($_SESSION['username_admin'])) {
-		$id = $_GET["id"];
+		$id = filter_var($_GET["id"], FILTER_SANITIZE_STRING);
 		$view = $koneksi->query("SELECT * FROM `data_diri` WHERE md5(`id`) = '$id'");
 		$rowview = mysqli_fetch_array($view);
 	}
