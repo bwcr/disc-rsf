@@ -8,7 +8,6 @@ if (isset($_POST['validate']) && isset($_POST['src'])) {
 	$_SESSION['src'] = $_POST['src'];
 }
 
-//print_r($_POST);
 if(isset($_GET['id'])){
 	if(isset($_SESSION['validate'])){
 		unset($_SESSION['validate']);
@@ -69,13 +68,6 @@ else{
 		die();
 	}
 }
-
-// print_r($row);
-
-// if ($nama==NULL){
-// 	header('Location: ../disc-rsf/');
-// }
-
 ?>
 
 <!DOCTYPE html>

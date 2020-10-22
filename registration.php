@@ -25,8 +25,6 @@ if(isset($_GET['id_mitra']) && isset($_GET['nama']) && isset($_GET['email'])){
 	}
 	else{
 		$rowresponden = mysqli_fetch_array($viewresponden);
-		// print_r($rowresponden);
-		// header("Location: index.php");
 	}
 }
 

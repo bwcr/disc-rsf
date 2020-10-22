@@ -17,7 +17,7 @@ session_start();
 	<div class="box-content content container">
 		<h2 class="error-title">404</h2>
 		<h3>Error! Mohon Kembali ke Halaman Utama</h3>
-		<p>Code:<?php print_r($_SESSION['error_code']); ?></p>
+		<p>Code:<?= $_SESSION['error_code'] ?></p>
 		<a class="go-btn" href="index.php"><i class="fas fa-home"></i> Home</a>
 	</div>
 </body><
