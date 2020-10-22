@@ -40,7 +40,7 @@ try {
     $mail->AltBody = 'Email provider tidak mendukung email HTML, mohon cek email menggunakan provider lain';
 
     $mail->send();
-    return printf('Message has been sent');
+    echo 'Message has been sent';
 } catch (Exception $e) {
-    return printf("Message could not be sent. Mailer Error: {$mail->ErrorInfo}");
+    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }

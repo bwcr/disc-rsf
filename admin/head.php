@@ -1,11 +1,15 @@
 <?php
 session_start();
 
-if(session_get('username_admin') && !isset(session_get('password_admin')){
+if(!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])){
   header("Location: ../admin.php");
 }
 
 require_once('../connection.php');
+
+// if(!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])){
+//   header("Location: admin.php");
+// }
 
 $responden = $koneksi->query("SELECT * FROM `data_diri` LEFT JOIN `mitra` ON `data_diri`.`id_mitra` = `mitra`.`id_mitra` ORDER BY `id` DESC");
 $hitResponden = $koneksi->query("SELECT count(*) as 'total' FROM `data_diri`");

@@ -4,17 +4,15 @@ require_once('connection.php');
 session_start();
 
 if(!isset($id)) {
-	if(isset(post('nama'), post('usia'), post('gender'), post('email'))){
-		$nama = post('nama');
-		$usia = post('usia');
-		$jk = post('gender');
-		$email = post('email');
-	}
-	else{
+	if(!isset($_POST['nama'])){
 		header("Location: index.php");
 	}
-	if(isset(post('id_mitra'))){
-		$id_mitra = post('id_mitra');
+	$nama = $_POST['nama'];
+	$usia = $_POST['usia'];
+	$jk = $_POST['gender'];
+	$email = $_POST['email'];
+	if($_POST['id_mitra']){
+		$id_mitra = $_POST['id_mitra'];
 	}
 	$ttlD = 0;
 	$ttlI = 0;
@@ -30,54 +28,56 @@ if(!isset($id)) {
 	$kS = 0;
 	$kC = 0;
 	$kStar = 0;
-	if(isset(post('p'), post('k')))
-	{
-		for($i=1; $i < 25; ++$i) {
-			if(post('p')[$i] == 'D'){
-				++$ttlD;
-				++$pD;
-			}
-			if(post('p')[$i] == 'I'){
-				++$ttlI;
-				++$pI;
-			}
-			if(post('p')[$i] == 'S'){
-				++$ttlS;
-				++$pS;
-			}
-			if(post('p')[$i] == 'C'){
-				++$ttlC;
-				++$pC;
-			}
-			if(post('p')[$i] == '*'){
-				++$pStar;
-			}
+
+	for($i=1; $i < 25; ++$i) {
+		if($_POST['p'][$i] == 'D'){
+			++$ttlD;
+			++$pD;
 		}
-	
-		for($i=1; $i < 25; ++$i) {
-			if(post('k')[$i] == 'D'){
-				--$ttlD;
-				++$kD;
-			}
-			if(post('k')[$i] == 'I'){
-				--$ttlI;
-				++$kI;
-			}
-			if(post('k')[$i] == 'S'){
-				--$ttlS;
-				++$kS;
-			}
-			if(post('k')[$i] == 'C'){
-				--$ttlC;
-				++$kC;
-			}
-			if(post('k')[$i] == '*'){
-				++$kStar;
-			}
+		if($_POST['p'][$i] == 'I'){
+			++$ttlI;
+			++$pI;
+		}
+		if($_POST['p'][$i] == 'S'){
+			++$ttlS;
+			++$pS;
+		}
+		if($_POST['p'][$i] == 'C'){
+			++$ttlC;
+			++$pC;
+		}
+		if($_POST['p'][$i] == '*'){
+			++$pStar;
 		}
 	}
-	
+
+	for($i=1; $i < 25; ++$i) {
+		if($_POST['k'][$i] == 'D'){
+			--$ttlD;
+			++$kD;
+		}
+		if($_POST['k'][$i] == 'I'){
+			--$ttlI;
+			++$kI;
+		}
+		if($_POST['k'][$i] == 'S'){
+			--$ttlS;
+			++$kS;
+		}
+		if($_POST['k'][$i] == 'C'){
+			--$ttlC;
+			++$kC;
+		}
+		if($_POST['k'][$i] == '*'){
+			++$kStar;
+		}
+	}
 }
+
+
+/*echo "i = $i, D = $ttlD, I = $ttlI, S = $ttlS, C = $ttlC <br>";
+echo "pD = $pD, pI = $pI, pS = $pS, pC = $pC <br>";
+echo "kD = $kD,kI = $kI, kS = $kS, kC = $kC <br>";*/
 
 switch ($pD) {
 	case '0':
@@ -144,7 +144,7 @@ switch ($pD) {
 	$ppD = 7.5;
 	break;
 	default:
-	return false;
+	echo "Error Perhitungan";
 	break;
 }
 
@@ -210,7 +210,7 @@ switch ($pI) {
 	$ppI = 8;
 	break;
 	default:
-	return false;
+	echo "Error Perhitungan";
 	break;
 }
 
@@ -279,7 +279,7 @@ switch ($pS) {
 	$ppS = 7.5;
 	break;
 	default:
-	return false;
+	echo "Ada kesalahan pada program";
 	break;
 }
 
@@ -348,7 +348,7 @@ switch ($pC) {
 	$ppC = 8;
 	break;
 	default:
-	return false;
+	echo "Ada kesalahan pada program, anda Indigo";
 	break;
 }
 
@@ -417,7 +417,7 @@ switch ($kD) {
 	$kkD = -7.5;
 	break;
 	default:
-	return false;
+	echo "Ada kesalahan pada program, anda Indigo";
 	break;
 }
 
@@ -486,7 +486,7 @@ switch ($kI) {
 	$kkI = -8;
 	break;
 	default:
-	return false;
+	echo "hore";
 	break;
 }
 
@@ -555,7 +555,7 @@ switch ($kS) {
 	$kkS = -8;
 	break;
 	default:
-	return false;
+	echo "Ada kesalahan pada program, anda Indigo";
 	break;
 }
 
@@ -624,7 +624,7 @@ switch ($kC) {
 	$kkC = -8;
 	break;
 	default:
-	return false;
+	echo "Ada kesalahan pada program, anda Indigo";
 	break;
 }
 
@@ -765,7 +765,7 @@ switch ($ttlD) {
 	$ttllD = 8;
 	break;
 	default:
-	return false;
+	echo "Ada kesalahan pada program";
 	break;
 }
 
@@ -867,7 +867,7 @@ switch ($ttlI) {
 	$ttllI = 8;
 	break;
 	default:
-	return false;
+	echo "Ada kesalahan pada program, anda Indigo";
 	break;
 }
 
@@ -986,7 +986,7 @@ switch ($ttlS) {
 	$ttllS = 8;
 	break;
 	default:
-	return false;
+	echo "Ada kesalahan pada program, anda Indigo";
 	break;
 }
 
@@ -1103,7 +1103,7 @@ switch ($ttlC) {
 	$ttllC = 8;
 	break;
 	default:
-	return false;
+	echo "Ada kesalahan pada program, anda Indigo";
 	break;
 }
 
@@ -1234,7 +1234,7 @@ switch ($discp) {
 	$infop = 40;
 	break;
 	default:
-	return false;
+	echo "ok<br>";
 	break;
 }
 
@@ -1497,24 +1497,24 @@ switch ($discttl) {
 	$infottl = 40;
 	break;
 	default:
-	return false;
+	echo "ok<br>";
 	break;
 }
 
-if(isset(post())){
+if(isset($_POST)){
 	$today = date("d/m/Y");
-	if(!isset(post('id_mitra')){
+	if(!isset($_POST['id_mitra'])){
 		if ($koneksi->query("INSERT INTO `data_diri` (`id`, `nama`, `usia`, `jk`, `email`, `pD`, `kD`, `pI`, `kI`, `pS`, `kS`, `pC`, `sC`, `pStar`, `kStar`, `ttlD`, `ttlI`, `ttlS`, `ttlC`, `ppD`,  `ppI`, `ppS`, `ppC`, `kkD`, `kkI`, `kkS`, `kkC`, `ttllD`, `ttllI`, `ttllS`, `ttllC`, `infop`, `infok`, `infottl`, `tanggal`) VALUES (NULL,'$nama','$usia','$jk','$email','$pD','$kD','$pI','$kI','$pS','$kS','$pC','$kC','$pStar', '$kStar', '$ttlD', '$ttlI', '$ttlS', '$ttlC', '$ppD', '$ppI', '$ppS', '$ppC', '$kkD', '$kkI', '$kkS', '$kkC', '$ttllD', '$ttllI', '$ttllS', '$ttllC', '$infop', '$infok', '$infottl', '$today')") === TRUE) {
 			$last_id = $koneksi->insert_id;
 			for ($num = 1; $num < 193 ; $num++) { 
 				$answer = 'answer-'.$num; 
 				$hiddenname = 'h-'.$num;
-				$hidden = post($hiddenname);
+				$hidden = $_POST[$hiddenname];
 				$masuk = $koneksi->query("UPDATE `data_diri` SET `$answer` = '$hidden' WHERE id = '$last_id'");
 			}
-			session_get('validate') = 1;
-			$email = $email;
-			$nama = $nama;
+			$_SESSION['validate'] = 1;
+			$email = $_POST['email'];
+			$nama = $_POST['nama'];
 			$subject = "[NOTICE] Review DISC Test Griya Psikologi";
 			$body = '<!DOCTYPE html>';
 			$body .= '<html style="height: 100%;">';
@@ -1940,7 +1940,7 @@ if(isset(post())){
 			$body .= 'Review</p>';
 			$body .= '<h2 class="content-title" style="font-weight: bold; font-family: Rubik,sans-serif; color: #000; font-size: 45px; letter-spacing: 3px; line-height: 1; margin: 0 auto 30px; max-width: 500px; text-transform: uppercase;">';
 			$body .= 'DISC Test</h2>';
-			$body .= '<h3 class="content-subtitle" style="font-weight: bold; font-family: Rubik,sans-serif; color: #000; display: block; font-size: 22px; line-height: 1; margin: 0 0 20px; position: relative; text-transform: uppercase;">'.post("nama").'</h3>';
+			$body .= '<h3 class="content-subtitle" style="font-weight: bold; font-family: Rubik,sans-serif; color: #000; display: block; font-size: 22px; line-height: 1; margin: 0 0 20px; position: relative; text-transform: uppercase;">'.$_POST["nama"].'</h3>';
 			$body .= '<p class="text-justify">Terimakasih telah melakukan DISC Test pada Griya Psikologi RSF. Anda dapat melihat kembali hasil DISC Test anda disini.</p>';
 			// $body .= '<p class="text-justify">Mohon dapat melakukan ganti password setelah anda login ke akun tersebut</p>';
 			$body .= '<a href="https://disc.griyapsikologi.com/results.php?id='.md5($last_id).'" style="color: #aaa; text-decoration: none; transition: ease .3s; -webkit-transition: ease .3s; -moz-transition: ease .3s; -o-transition: ease .3s; -ms-transition: ease .3s;"><button style="max-width: 100%; background: #e3451e none repeat scroll 0 0; border: 2px solid #e3451e; color: #fff; display: inline-block; font-family: rubik; font-weight: 500; letter-spacing: 4px; line-height: 1; padding: 14px 30px; text-transform: uppercase; width: auto; transition: ease .3s;">Lihat Disini</button></a>';
@@ -1950,24 +1950,24 @@ if(isset(post())){
 			include 'test-mail.php';
 			header("Location: results.php?id=".md5($last_id)."");
 		} else {
-			return false;
+			echo "gagal";
 		}
 	}
-	elseif(isset(post('id_mitra')){
+	elseif(isset($_POST['id_mitra'])){
 		if ($koneksi->query("INSERT INTO `data_diri` (`id`, `nama`, `usia`, `jk`, `email`, `id_mitra`, `pD`, `kD`, `pI`, `kI`, `pS`, `kS`, `pC`, `sC`, `pStar`, `kStar`, `ttlD`, `ttlI`, `ttlS`, `ttlC`, `ppD`,  `ppI`, `ppS`, `ppC`, `kkD`, `kkI`, `kkS`, `kkC`, `ttllD`, `ttllI`, `ttllS`, `ttllC`, `infop`, `infok`, `infottl`, `tanggal`) VALUES (NULL,'$nama','$usia','$jk','$email','$id_mitra','$pD','$kD','$pI','$kI','$pS','$kS','$pC','$kC','$pStar', '$kStar', '$ttlD', '$ttlI', '$ttlS', '$ttlC', '$ppD', '$ppI', '$ppS', '$ppC', '$kkD', '$kkI', '$kkS', '$kkC', '$ttllD', '$ttllI', '$ttllS', '$ttllC', '$infop', '$infok', '$infottl', '$today')") === TRUE) {
 			$last_id = $koneksi->insert_id;
 			$delete = $koneksi->query("DELETE FROM `data_diri_pending` WHERE `id_mitra` = '$id_mitra' AND `nama` = '$nama' AND `email` = '$email'");
 			for ($num = 1; $num < 193 ; $num++) { 
 				$answer = 'answer-'.$num; 
 				$hiddenname = 'h-'.$num;
-				$hidden = post($hiddenname);
+				$hidden = $_POST[$hiddenname];
 				$masuk = $koneksi->query("UPDATE `data_diri` SET `$answer` = '$hidden' WHERE id = '$last_id'");
 			}
-			session_add('validate', 1);
+			$_SESSION['validate'] = 1;
 			header("Location: results.php?id=".md5($last_id)."");
 		} 
 		else {
-			return false;
+			echo "gagal";
 		}
 	}
 }

@@ -10,13 +10,12 @@
 
 	// Checking error
     if(mysqli_connect_errno()){
-        return printf('Koneksi gagal: <br>'.mysqli_connect_error())
+        die('Koneksi gagal: <br>'.mysqli_connect_error());
     }
     if (empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] === "off") {
-        if(isset($_SERVER['HTTP_HOST'], $_SERVER['REQUEST_URI'])){
-            $location = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-            header('HTTP/1.1 301 Moved Permanently');
-            header('Location: ' . $location);
-        }
+        $location = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+        header('HTTP/1.1 301 Moved Permanently');
+        header('Location: ' . $location);
+        exit;
     }
 ?>

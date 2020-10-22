@@ -3,35 +3,39 @@ require_once 'connection.php';
 
 session_start();
 
-if(isset(session_get()) && isset(post()) && !isset(get('id'))){
-	session_unset();
+if(isset($_SESSION) && isset($_POST) && !isset($_GET['id'])){
+	unset($_SESSION['username']);
+	unset($_SESSION['password']);
+	unset($_SESSION['username_admin']);
+	unset($_SESSION['password_password']);
+	session_destroy();
 }
 
-if(!isset(session_get('username') || !isset(session_get('username_admin'))){
-	if(!isset(post())){
-		session_add('error_code', '40004');
+if(!isset($_SESSION['username']) || !isset($_SESSION['username_admin'])){
+	if(!isset($_POST)){
+		$_SESSION['error_code'] = '40004';
 		header('Location: 404.php');
 	}
 }
 
-if(isset(post())){
-	if (!isset(post('namaDepan')) && !isset(get('id')){
-		session_add('error_code', '40005');
+if(isset($_POST)){
+	if (!isset($_POST['namaDepan']) && !isset($_GET['id'])){
+		$_SESSION['error_code'] = '40005';
 		header('Location: 404.php');
 	}
 }
 
-if(isset(get('id')){
-	$id = get('id');
-	if (isset(session_get('username')) || isset(session_get('username_admin'))) {
+if(isset($_GET['id'])){
+	if (isset($_SESSION['username']) || isset($_SESSION['username_admin'])) {
+		$id = $_GET["id"];
 		$view = $koneksi->query("SELECT * FROM `data_diri` WHERE md5(`id`) = '$id'");
 		$rowview = mysqli_fetch_array($view);
 	}
 }
 
-elseif(isset(get('id')) && !isset(post('')){
-	if (!isset(session_get('username')) || !isset(session_get('username_admin'))) {
-		session_add('error_code', '40004');
+elseif(isset($_GET['id']) && !isset($_POST[''])){
+	if (!isset($_SESSION['username']) || !isset($_SESSION['username_admin'])) {
+		$_SESSION['error_code'] = '40004';
 		header('Location: 404.php');
 	}
 }
@@ -116,27 +120,26 @@ elseif(isset(get('id')) && !isset(post('')){
 		});
 		//Radio Button
 		<?php
-		for ($i=1; $i < 25 ; $i++) { ?>
+		for ($i=1; $i < 25 ; $i++) {
 			//Button Kanan
-			$(".soal-<?= $i ?> tr:nth-child(2) > td:nth-child(2) > label > input").click(function(){
-				$(".soal-<?= $i ?> tr:nth-child(2) > td:first-child > label > input").prop("checked", false);
+			echo '$(".soal-'.$i.' tr:nth-child(2) > td:nth-child(2) > label > input").click(function(){
+				$(".soal-'.$i.' tr:nth-child(2) > td:first-child > label > input").prop("checked", false);
 			});';
-			$(".soal-<?= $i ?> tr:nth-child(3) > td:nth-child(2) > label > input").click(function(){
-				$(".soal-<?= $i ?> tr:nth-child(3) > td:first-child > label > input").prop("checked", false);
+			echo '$(".soal-'.$i.' tr:nth-child(3) > td:nth-child(2) > label > input").click(function(){
+				$(".soal-'.$i.' tr:nth-child(3) > td:first-child > label > input").prop("checked", false);
 			});';
-			$(".soal-<?= $i ?> tr:nth-child(4) > td:nth-child(2) > label > input").click(function(){
-				$(".soal-<?= $i ?> tr:nth-child(4) > td:first-child > label > input").prop("checked", false);
+			echo '$(".soal-'.$i.' tr:nth-child(4) > td:nth-child(2) > label > input").click(function(){
+				$(".soal-'.$i.' tr:nth-child(4) > td:first-child > label > input").prop("checked", false);
 			});';
-			$(".soal-<?= $i ?> tr:nth-child(5) > td:nth-child(2) > label > input").click(function(){
-				$(".soal-<?= $i ?> tr:nth-child(5) > td:first-child > label > input").prop("checked", false);
+			echo '$(".soal-'.$i.' tr:nth-child(5) > td:nth-child(2) > label > input").click(function(){
+				$(".soal-'.$i.' tr:nth-child(5) > td:first-child > label > input").prop("checked", false);
 			});';
 			//Button Kiri
-			<?php 
-			for ($j=2; $j < 6; $j++) { ?>
-				$(".soal-<?= $i ?> tr:nth-child('.$j.') > td:first-child > label > input").click(function(){
-					$(".soal-<?= $i ?> tr:nth-child('.$j.') > td:nth-child(2) > label > input").prop("checked", false);
+			for ($j=2; $j < 6; $j++) {
+				echo '$(".soal-'.$i.' tr:nth-child('.$j.') > td:first-child > label > input").click(function(){
+					$(".soal-'.$i.' tr:nth-child('.$j.') > td:nth-child(2) > label > input").prop("checked", false);
 				});';
-			<?php }};
+			}};
 			?>
 			//Validasi Jawaban
 			$(".button").click(function(e){
@@ -185,15 +188,15 @@ elseif(isset(get('id')) && !isset(post('')){
 </head>
 <body style="background-color: #EEEEEE">
 	<?php
-	if(isset(session_get('username')) || isset(session_get('username_admin'))){ ?>
-		<nav class="navbar navbar-expand-lg bg-light">
+	if(isset($_SESSION['username']) || isset($_SESSION['username_admin'])){
+		echo
+		'<nav class="navbar navbar-expand-lg bg-light">
 		<ul class="navbar nav">
 		<li class="nav-item">
 		<a class="nav-link active" href="results.php?id='.$id.'"><i class="fas fa-chevron-left"></i> Kembali ke Hasil Tes</a>
 		</li>
 		</ul>
-		</nav>
-	<?php
+		</nav>';
 	}
 	else{
 		?>
@@ -227,16 +230,16 @@ elseif(isset(get('id')) && !isset(post('')){
 	<div class="container clearfix card p-4 mb-5 my-md-5" style="background-color: #f9f9f9">
 		<div class="box-content">
 			<?php
-			if (isset(get('id')) { ?>
-				<p class='top-title'>
+			if (isset($_GET['id'])) {
+				echo "<p class='top-title'>
 				JAWABAN</p>";
-			<?php }
-			else { ?>
-				<p class='top-title'>
+			}
+			else {
+				echo "<p class='top-title'>
 				SOAL</p>
 				<h2 class='content-title'>
-				DISC TEST</h2>
-			<?php }
+				DISC TEST</h2>";
+			}
 			?>
 		</div>
 		<form action="calculate.php" method="POST">
@@ -2019,21 +2022,20 @@ elseif(isset(get('id')) && !isset(post('')){
 <!-- <button type="submit">SUBMIT</button> -->
 </div>
 <?php
-if (isset(post('namaDepan'), post('usia'), post('gender'), post('email') && !isset(get('id')))) { ?>
-	<input type="hidden" name="nama" value="<?= post("namaDepan")?> <?= post("namaBelakang") ?>">
-	<input type="hidden" name="usia" value="'<?= post("usia")?>">
-	<input type="hidden" name="gender" value="<?= post("gender") ?>">
-	<input type="hidden" name="email" value="<?= post("email") ?>">
-	<?php 
-	if(isset(post('id_mitra'))){ ?>
-		<input type="hidden" name="id_mitra" value="<?= post("id_mitra") ?>">
-	<?php }
+if (isset($_POST) && !isset($_GET['id'])) {
+	echo '<input type="hidden" name="nama" value="'.$_POST["namaDepan"].' '.$_POST["namaBelakang"].'">';
+	echo '<input type="hidden" name="usia" value="'.$_POST["usia"].'">';
+	echo '<input type="hidden" name="gender" value="'.$_POST["gender"].'">';
+	echo '<input type="hidden" name="email" value="'.$_POST["email"].'">';
+	if(isset($_POST['id_mitra'])){
+		echo '<input type="hidden" name="id_mitra" value="'.$_POST["id_mitra"].'">';
+	}
 }
 ?>
 </form>
 <nav id="submit" class="navbar navbar-expand-lg bg-light">
 	<?php
-	if(!isset(get('id'))){ ?>
+	if(!isset($_GET['id'])){ ?>
 		<ul class="navbar nav ml-auto">
 			<li class="nav-item">
 				<span id="span"></span>
@@ -2054,22 +2056,24 @@ if (isset(post('namaDepan'), post('usia'), post('gender'), post('email') && !iss
 </div>
 </body>
 <?php
-if(isset(session_get('username')) || isset(session_get('username_admin'))){
-	session_add('validate', 1);
-	if(isset(get("id"))){ ?>
-		<script>
-		$('input:radio').attr('disabled','disabled');
-		<?php for ($i=1; $i < 193 ; $i++) {
+if(isset($_SESSION['username']) || isset($_SESSION['username_admin'])){
+	$_SESSION['validate'] = 1;
+	if(isset($_GET["id"])){
+	// print_r($rowview);
+		echo "<script>";
+		echo "$('input:radio').attr('disabled','disabled');";
+		for ($i=1; $i < 193 ; $i++) { 
 			$ans = $rowview['answer-'.$i];
 			if ($ans == "1") {
-				?>
-				$('#radio-'+<?= $i ?>+'').attr({
+				echo "
+				$('#radio-'+".$i."+'').attr({
 					checked: 'true'
 					});
-				<?php }
-			}?>
-			</script>
-		<?php }
+					";
+				}
+			}
+			echo "</script>";
+		}
 	}
 	?>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.2/jquery.twbsPagination.js"></script>

@@ -41,6 +41,7 @@ try {
 
     $mail->send();
 } catch (Exception $e) {
-    session_add('alert-failure', "Message could not be sent");
+    $_SESSION['alert-failure'] = "Message could not be sent";
     header("Location: $destination");
+    die();
 }

@@ -3,15 +3,16 @@ require_once 'connection.php';
 
 session_start();
 
-if (get("key") && get("email")){
-	$key = get("key", FILTER_SANITIZE_STRING);	
-	$email = get("email", FILTER_VALIDATE_EMAIL);
+if (isset($_GET["key"]) && isset($_GET["email"])){
+	$key = $_GET["key"];
+	$email = $_GET["email"];
 	$curDate = date("Y-m-d H:i:s");
 	$select = $koneksi->query("SELECT * FROM `password_reset` WHERE `key` = '$key' AND `email` = '$email'");
 	$row = mysqli_fetch_array($select);
 	if($row == ""){
-		session_add('alert-warning', "Invalid Link");
+		$_SESSION['alert-warning'] = "Invalid Link";
 		header("Location: admin.php");
+		die();
 	}
 	else{
 		$expDate = $row['expDate'];
@@ -44,7 +45,7 @@ if (get("key") && get("email")){
 					<div class="mb-3">
 						<input required="required" id="newPassword" type="password" name="newPassword" placeholder="Password Baru..">
 						<input required="required" id="confirmPassword" type="password" name="confirmPassword" placeholder="Password Konfirmasi..">
-						<input type="hidden" name="email" value="<?= $email ?>">
+						<input type="hidden" name="email" value="<?php echo $email;?>">
 					</div>
 					<br>		
 					<button type="submit">SUBMIT</button>
@@ -92,14 +93,16 @@ if (get("key") && get("email")){
 	<?php
 }
 else{
-	session_add('alert-warning', "Link expired");
+	$_SESSION['alert-warning'] = "Link expired";
 	header("Location: admin.php");
+	die();
 }
 }
 }
 else{
-	session_add('alert-warning', "Link Invalid");
+	$_SESSION['alert-warning'] = "Link Invalid";
 	header("Location: admin.php");
+	die();	
 }
 
 ?>

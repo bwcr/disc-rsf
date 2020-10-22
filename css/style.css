@@ -1,78 +1,38 @@
 @import url("https://use.fontawesome.com/releases/v5.6.3/css/all.css");
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700|Rubik:400,700,900');
 
-body {
+body{
   overflow-x: hidden;
 }
 
-.row.page:not(.page-active) {
+.row.page:not(.page-active){
   display: none;
 }
 
-.page-active {
+.page-active{
   display: flex;
 }
 
-input[type="text"],
-input[type="password"],
-input[type="email"] {
-  margin-bottom: 1em;
+
+input[type="text"],input[type="password"],input[type="email"] {
+	margin-bottom: 1em;
 }
 
-/* Radio Button */
-
-.btn.btn-sm:hover {
-  background-color: #e3451e;
+/*Radio Button*/
+.btn.btn-sm:hover{
+  background-color: #E3451E;
   color: white;
 }
 
-button,
-.button {
-  background: #e3451e none repeat scroll 0 0;
-  border: 2px solid #e3451e;
-  color: #fff;
-  display: inline-block;
-  font-family: 'Rubik', Arial, Helvetica, sans-serif;
-  font-weight: 500;
-  letter-spacing: 4px;
-  line-height: 1;
-  padding: 14px 30px;
-  text-transform: uppercase;
-  width: auto;
-  transition: ease 0.3s;
-}
-
-button:hover,
-.button:hover {
-  background: white;
-  color: #e3451e;
-  cursor: pointer;
-}
-
-button:disabled,
-.button:disabled {
+button:disabled{
   background-color: grey;
   border-color: grey;
   color: white;
 }
 
-button:disabled {
-  background-color: grey;
-  border-color: grey;
-  color: white;
-}
-
-button:disabled:hover {
-  background-color: grey;
-  border-color: grey;
-  color: white;
-  cursor: unset;
-}
-
-button:disabled:hover,
-.button:disabled:hover {
-  background-color: grey;
-  border-color: grey;
+button:disabled:hover{
+ background-color: grey;
+  border-color: grey; 
   color: white;
   cursor: unset;
 }
@@ -89,7 +49,6 @@ button:disabled:hover,
 }
 
 /* Hide the browser's default radio button */
-
 .container-checkmark input {
   position: absolute;
   opacity: 0;
@@ -99,7 +58,6 @@ button:disabled:hover,
 }
 
 /* Create a custom radio button */
-
 .checkmark {
   position: absolute;
   top: 0;
@@ -113,28 +71,29 @@ button:disabled:hover,
 }
 
 /* On mouse-over, add a grey background color */
-
 .container-checkmark:hover input ~ .checkmark {
   background-color: #ccc;
 }
 
 /* When the radio button is checked, add a blue background */
-
 .container-checkmark input:checked ~ .checkmark {
   background-color: #e3451e;
 }
 
 /* Create the indicator (the dot/circle - hidden when not checked) */
-
-.checkmark::after {
+.checkmark:after {
   content: "";
   position: absolute;
   display: none;
 }
 
-/* Style the indicator (dot/circle) */
+/* Show the indicator (dot/circle) when checked */
+.container-checkmark input:checked ~ .checkmark:after {
+  display: block;
+}
 
-.container-checkmark .checkmark::after {
+/* Style the indicator (dot/circle) */
+.container-checkmark .checkmark:after {
   top: 9px;
   left: 9px;
   width: 8px;
@@ -143,83 +102,121 @@ button:disabled:hover,
   background: white;
 }
 
-/* Show the indicator (dot/circle) when checked */
 
-.container-checkmark input:checked ~ .checkmark::after {
-  display: block;
+table{
+  background-color: white!important;
 }
 
-table {
-  background-color: white !important;
+td a:hover{
+  background-color: unset!important;
 }
 
-td a:hover {
-  background-color: unset !important;
+section{
+  transition: ease .3s;
 }
 
-section {
-  transition: ease 0.3s;
-}
-
-.sidebar {
-  position: fixed !important;
+.sidebar{
+  position: fixed!important;
   display: inline-block;
-  top: 0;
-  padding: 0.5em;
+  top: 0px;
+  padding: .5em;
   z-index: 15;
   background-color: grey;
-}
+  }*/
 
-.row {
+  .btn.btn-sm:hover{
+    background-color: #E3451E;
+    color: white;
+  }
+
+  button:disabled, .button:disabled{
+    background-color: grey;
+    border-color: grey;
+    color: white;
+  }
+
+  button:disabled:hover, .button:disabled:hover{
+   background-color: grey;
+   border-color: grey; 
+   color: white;
+   cursor: unset;
+ }
+
+ .row{
   margin-bottom: 2em;
 }
 
-input[type="radio"] {
+input[type="radio"]{
   width: inherit;
 }
 
 form span {
-  padding-bottom: 1em;
+	padding-bottom: 1em;
 }
 
-.card {
-  border-radius: 0 !important;
+button,.button {
+  background: #e3451e none repeat scroll 0 0;
+  border: 2px solid #e3451e;
+  color: #fff;
+  display: inline-block;
+  font-family: rubik;
+  font-weight: 500;
+  letter-spacing: 4px;
+  line-height: 1;
+  padding: 14px 30px;
+  text-transform: uppercase;
+  width: auto;
+  transition: ease .3s;
 }
 
-#wp-calendar {
-  min-width: 50% !important;
-  max-width: 75% !important;
-  min-height: 100% !important;
+button:hover,.button:hover{
+	background: white;
+	color: #e3451e;
+  cursor: pointer;
 }
 
-#answer .col-md-4 {
+.card{
+  border-radius: 0px!important;
+}
+
+#wp-calendar{
+  min-width: 50%!important;
+  max-width: 75%!important;
+  min-height: 100%!important;
+}
+
+#answer li{
+  /*list-style-type: none;*/
+}
+
+#answer .col-md-4{
   padding: 1.3em;
 }
 
-#submit {
+#submit{
   position: fixed;
   width: 100%;
-  bottom: 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.125);
+  bottom: 0px;
+  border-top: 1px solid rgba(0,0,0,.125);
 }
 
 #graph3.line-subtext::before {
-  background: #7cb7f2 none repeat scroll 0 0 !important;
+  background: #7CB7F2 none repeat scroll 0 0!important;
 }
 
-canvas {
+canvas{
   margin-bottom: 1em;
 }
 
 #graph1.line-subtext::before {
-  background: #e3451e none repeat scroll 0 0 !important;
+  background: #E3451E none repeat scroll 0 0!important;
 }
 
 #graph2.line-subtext::before {
-  background: green none repeat scroll 0 0 !important;
+  background: green none repeat scroll 0 0!important;
 }
 
-#toggler.show {
+#toggler.show{
   position: fixed;
   top: 0.5em;
   left: 7.5em;
@@ -227,36 +224,37 @@ canvas {
   transition: 0.5s;
 }
 
-#toggler.hide {
+#toggler.hide{
   left: 1em;
 }
 
-/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-
-.row.content {
-  height: 550px;
+@media (max-width: 500px){
+  #toggler.hide{}
 }
 
-/* Set gray background color and 100% height */
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {height: 550px}
 
+/* Set gray background color and 100% height */
 .sidenav {
   background-color: #f1f1f1;
   height: 100%;
 }
 
-/* On small screens, set height to 'auto' for the grid */
-
-@media screen and (max-width: 767px) {
-  .row.content {
-    height: auto;
-  }
+.disabled{
+  
 }
 
-#navbar {
+/* On small screens, set height to 'auto' for the grid */
+@media screen and (max-width: 767px) {
+  .row.content {height: auto;} 
+}
+
+#navbar{
   height: 100%;
 }
 
-label.error {
+label.error{
   float: right;
   margin-right: 25px;
   margin-left: -25px;
@@ -266,10 +264,10 @@ label.error {
   color: #e3451e;
 }
 
-label.container-checkmark > label.error {
+label.container-checkmark>label.error{
   visibility: hidden;
 }
 
-.nav-item {
+.nav-item{
   list-style: none;
 }

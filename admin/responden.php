@@ -43,19 +43,19 @@
                   <tbody>
             <?php
             $i = 1;
-            while ($rowresponden = mysqli_fetch_array($responden)) { ?>
-              <tr>
-              <td><?= $i ?></td>
-              <td><?= $rowresponden['nama'] ?></td>
-              <td><?= $rowresponden['usia'] ?></td>
-              <td><?= $rowresponden['jk'] ?></td>
-              <td><?= $rowresponden[4] ?></td>
-              <td><?= $rowresponden['tanggal'] ?></td>
-              <td><form method="POST" action="../results.php?id=<?= md5($rowresponden['id']) ?>"><input type="hidden" name="validate"><input type="hidden" name="src" value="admin"><button type="submit" class="mdc-button mdc-button--unelevated" data-mdc-auto-init="MDCRipple"><i class="fas fa-external-link-alt"></i></button></form>
-              <a href="../delete.php?id=<?= md5($rowresponden['id']) ?>" class="deleteResponden" id="deleteResponden"><button style="margin-right: 0.2em;" class="mdc-button mdc-button--unelevated secondary-filled-button" data-mdc-auto-init="MDCRipple"><i class="fas fa-trash"></i></button></a>
-              </td>
-              </tr>
-              <?php
+            while ($rowresponden = mysqli_fetch_array($responden)) {
+              echo '<tr>';
+              // echo "<th scope='row'>".$i."</th>";
+              echo "<td>".$i."</td>";
+              echo "<td>".$rowresponden['nama']."</td>";
+              echo "<td>".$rowresponden['usia']."</td>";
+              echo "<td>".$rowresponden['jk']."</td>";
+              echo "<td>".$rowresponden[4]."</td>";
+              echo "<td>".$rowresponden['tanggal']."</td>";
+              echo '<td><form method="POST" action="../results.php?id='.md5($rowresponden['id']).'"><input type="hidden" name="validate"><input type="hidden" name="src" value="admin"><button type="submit" class="mdc-button mdc-button--unelevated" data-mdc-auto-init="MDCRipple"><i class="fas fa-external-link-alt"></i></button></form>
+              <a href="../delete.php?id='.md5($rowresponden['id']).'" class="deleteResponden" id="deleteResponden"><button style="margin-right: 0.2em;" class="mdc-button mdc-button--unelevated secondary-filled-button" data-mdc-auto-init="MDCRipple"><i class="fas fa-trash"></i></button></a>
+              </td>';
+              echo "</tr>";
               $i = $i + 1;
             }
             ?>

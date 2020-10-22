@@ -3,30 +3,40 @@ session_start();
 
 require_once('../connection.php');
 
-if(isset(get('id'), post('username'), post('password'), post('email'), post('mitra')))
-{
-	$id = get('id');
-	$usernameMitra = post('username');
-	$passwordMitra = md5(post('password'));
-	$emailMitra = post('email');
-	$namaMitra = post('mitra');
-}
+// $username = $_POST['username'];
+// $password = $_POST['password'];
+// $session_username = $_SESSION['username_admin']
+   ;
+// $session_password = $_SESSION['password_admin'];
+$id = $_GET['id'];
 
-if(isset(session_get('username_admin')) && isset(session_get('password_admin'))){
+$usernameMitra = $_POST['username'];
+$passwordMitra = md5($_POST['password']);
+$emailMitra = $_POST['email'];
+$namaMitra = $_POST['mitra'];
+
+// if($_GET == NULL){
+// 	alert('Terjadi kesalahan');
+// 	header("Location: mitra.php");
+// }
+
+print_r($_POST);
+
+if(isset($_SESSION['username_admin']) && isset($_SESSION['password_admin'])){
 	$update = $koneksi->query("UPDATE `mitra` SET `username`='$usernameMitra',`password`='$passwordMitra',`email`='$emailMitra',`mitra`='$namaMitra' WHERE md5(`id_mitra`) = '$id'");
 	if($update === TRUE){
-		session_add('alert-success', "Data telah berhasil diperbarui, harap menghubungi mitra terkait");
+		$_SESSION['alert-success'] = "Data telah berhasil diperbarui, harap menghubungi mitra terkait";
 		print_r("Sukses");
 	}
 	else{
-		session_add('alert-failure', "Data gagal dimasukkan, mohon input kembali");
+		$_SESSION['alert-failure'] = "Data gagal dimasukkan, mohon input kembali";
 		print_r("Gagal");
 	}
 	header("Location: mitra.php");
 }
 
 else{
-	session_add('alert-warning', "Harap Login kembali");
+	$_SESSION['alert-warning'] = "Harap Login kembali";
 	header("Location: ../admin.php");	
 }
 

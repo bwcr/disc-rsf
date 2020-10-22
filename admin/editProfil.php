@@ -3,7 +3,7 @@
 
 <?php include 'head.php'; ?>
 <style type="text/css">
-  .content-wrapper {
+  .content-wrapper{
     padding-top: 0px;
   }
 </style>
@@ -28,23 +28,18 @@
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                       <label class="mdc-text-field w-100">
                         <h2 class="mdc-typography--subheading1">Username</h2>
-                        <input name="username" type="text" placeholder="Username..." required="required"
-                          class="mdc-text-field__input" value="<?= session_get('username_admin')?>">
+                        <input name="username" type="text" placeholder="Username..." required="required" class="mdc-text-field__input" value=<?php echo '"'.$_SESSION['username_admin'].'"' ?>>
                         <div class="mdc-text-field__bottom-line"></div>
                       </label>
                     </div>
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                       <label class="mdc-text-field w-100">
                         <h2 class="mdc-typography--subheading1">Email</h2>
-                        <input name="email" type="email" placeholder="email..." required="required"
-                          class="mdc-text-field__input" value="<?= session_get("email") ?>">
+                        <input name="email" type="email" placeholder="email..." required="required" class="mdc-text-field__input" value=<?php echo '"'.$_SESSION["email"].'"' ?>>
                         <div class="mdc-text-field__bottom-line"></div>
                       </label>
                     </div>
-                    <button type="submit" id="buttonUpdateAdmin"
-                      class="mdc-button mdc-button--raised mdc-button--compact mdc-ripple-upgraded"
-                      data-mdc-auto-init="MDCRipple"
-                      style="--mdc-ripple-fg-size:42.6094px; --mdc-ripple-fg-scale:2.10327;">
+                    <button type="submit" id="buttonUpdateAdmin" class="mdc-button mdc-button--raised mdc-button--compact mdc-ripple-upgraded" data-mdc-auto-init="MDCRipple" style="--mdc-ripple-fg-size:42.6094px; --mdc-ripple-fg-scale:2.10327;">
                       Simpan
                     </button>
                   </form>
@@ -59,30 +54,25 @@
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                       <label class="mdc-text-field w-100">
                         <h2 class="mdc-typography--subheading1">Password Lama</h2>
-                        <input name="password" type="password" placeholder="Password Lama..." required="required"
-                          class="mdc-text-field__input">
+                        <input name="password" type="password" placeholder="Password Lama..." required="required" class="mdc-text-field__input">
                         <div class="mdc-text-field__bottom-line"></div>
                       </label>
                     </div>
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                       <label class="mdc-text-field w-100">
                         <h2 class="mdc-typography--subheading1">Password Baru</h2>
-                        <input id="newPassword" name="newPassword" type="password" placeholder="Password Baru..."
-                          required="required" class="mdc-text-field__input">
+                        <input id="newPassword" name="newPassword" type="password" placeholder="Password Baru..." required="required" class="mdc-text-field__input">
                         <div class="mdc-text-field__bottom-line"></div>
                       </label>
                     </div>
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                       <label class="mdc-text-field w-100">
                         <h2 class="mdc-typography--subheading1">Konfirmasi Password Baru</h2>
-                        <input id="confirmPassword" name="confirmPassword" type="password"
-                          placeholder="Konfirmasi Password Baru..." required="required" class="mdc-text-field__input">
+                        <input id="confirmPassword" name="confirmPassword" type="password" placeholder="Konfirmasi Password Baru..." required="required" class="mdc-text-field__input">
                         <div class="mdc-text-field__bottom-line"></div>
                       </label>
                     </div>
-                    <button type="submit" id="buttonUpdatePassword"
-                      class="mdc-button mdc-button--raised mdc-button--compact mdc-ripple-upgraded"
-                      data-mdc-auto-init="MDCRipple">
+                    <button type="submit" id="buttonUpdatePassword" class="mdc-button mdc-button--raised mdc-button--compact mdc-ripple-upgraded" data-mdc-auto-init="MDCRipple">
                       Simpan
                     </button>
                   </form>
@@ -94,25 +84,25 @@
       </main>
     </div>
     <?php
-    if(isset(session_get('alert-success')) || isset(session_get('alert-failure'))){
+    if(isset($_SESSION['alert-success']) || isset($_SESSION['alert-failure'])){
       ?>
-    <div id="alertModal" class="modal">
-      <p>
+      <div id="alertModal" class="modal">
         <?php 
-        if (isset(session_get('alert-success'))) { ?>
-          <?= session_get('alert-success'); ?><?php
-          unset(session_get('alert-success'));
+        if (isset($_SESSION['alert-success'])) {
+          echo "<p>".$_SESSION['alert-success']."</p>";
+          unset($_SESSION['alert-success']);
         }
-        elseif (isset(session_get('alert-failure'))) { ?>
-          <?= session_get('alert-failure'); ?><?php
-          unset(session_get('alert-failure'));
+        elseif (isset($_SESSION['alert-failure'])) {
+          echo "<p>".$_SESSION['alert-failure']."</p>";
+          unset($_SESSION['alert-failure']);
         }
-        else{?>
-      </p>
-      <?php } ?>
-      <a href="#" rel="modal:close">Dismiss</a>
-    </div>
-    <?php
+        else{
+
+        }
+        ?>
+        <a href="#" rel="modal:close">Dismiss</a>
+      </div>
+      <?php
     }
     ?>
     <!-- partial:partials/_footer.php -->
@@ -122,5 +112,4 @@
     <!-- partial -->
   </div>
 </body>
-
 </html>
