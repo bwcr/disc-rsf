@@ -4,6 +4,7 @@ image/
 admin-update.php
 addanswer.php
 admin/gulpfile.js
+js/graph.js
 admin/js/graph.js
 js/disc.js
 backup-wordpress
@@ -20,8 +21,10 @@ package.json
 admin/updateMitra.php
 admin/addMitra.php
 admin/deleteMitra.php
+admin/mitra.php
 admin/images/
 admin/pages
 admin/fonts
 admin/css/maps
 admin/screenshot.jpg
+update-premium.php
