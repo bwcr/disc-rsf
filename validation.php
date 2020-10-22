@@ -13,7 +13,6 @@ if(isset($_POST['username']) && isset($_POST['password'])){
 	$row = mysqli_fetch_array($select);
 
 	if(($select->num_rows) === 1){
-		print_r($row);
 		$_SESSION['username_admin'] = $row['username'];
 		$_SESSION['password_admin'] = $row['password'];
 		$_SESSION['email'] = $row['email'];

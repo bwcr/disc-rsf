@@ -2059,7 +2059,6 @@ if (isset($_POST) && !isset($_GET['id'])) {
 if(isset($_SESSION['username']) || isset($_SESSION['username_admin'])){
 	$_SESSION['validate'] = 1;
 	if(isset($_GET["id"])){
-	// print_r($rowview);
 		echo "<script>";
 		echo "$('input:radio').attr('disabled','disabled');";
 		for ($i=1; $i < 193 ; $i++) { 

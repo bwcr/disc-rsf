@@ -29,11 +29,9 @@ if(isset($_SESSION['username_admin']
 				if($update){
 					$_SESSION['password_admin'] = $newPassword;
 					$_SESSION['alert-success'] = "Password telah berhasil diperbarui";
-					print_r("Sukses");
 				}
 				else{
 					$_SESSION['alert-failure'] = "Password gagal diperbarui";
-					print_r("Gagal");
 				}
 				header("Location: editProfil.php");
 			}

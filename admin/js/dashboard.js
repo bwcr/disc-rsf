@@ -1,7 +1,6 @@
 (function($) {
   'use strict';
-  $.ready(function(){
-$(function() {
+  $(function() {
     if ($("#dashboard-monthly-analytics").length) {
       var ctx = document.getElementById('dashboard-monthly-analytics').getContext("2d");
       var myChart = new Chart(ctx, {
@@ -15,6 +14,7 @@ $(function() {
               pointRadius: 0,
               fill: true,
               borderWidth: 1,
+              fill: 'origin',
               data: [2, 2, 20, 40, 20, 50, 40, 10, 30]
             },
             {
@@ -24,6 +24,7 @@ $(function() {
               pointRadius: 0,
               fill: true,
               borderWidth: 1,
+              fill: 'origin',
               data: [0, 35, 0, 60, 30, 20, 10, 40, 20]
             }
           ]
@@ -107,5 +108,4 @@ $(function() {
       bar.animate(0.4);
     }
   });
-}
 })(jQuery);

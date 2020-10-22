@@ -481,11 +481,9 @@ if(isset($_SESSION['username_admin']
 			window.location.href = 'mitra.php';
 			</script>
 			<?php
-			print_r("Sukses");
 		}
 		else{
 			$_SESSION['alert-failure'] = "Data gagal dimasukkan, mohon input kembali";
-			print_r("Gagal");
 		}
 		header("Location: mitra.php");
 	}

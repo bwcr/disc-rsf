@@ -1108,10 +1108,8 @@ switch ($ttlC) {
 }
 
 $discp = array($ppD, $ppI, $ppS, $ppC);
-//print_r($discp);
 $discp = array_filter($discp, function($p) { return $p > 0; });
 rsort($discp);
-//print_r($discp);
 switch ($discp) {
 	case array($ppC):
 	$infop = 1;
@@ -1239,7 +1237,6 @@ switch ($discp) {
 }
 
 $disck = array($kkD, $kkI, $kkS, $kkC);
-//print_r($discp);
 $disck = array_filter($disck, function($p) { return $p > 0; });
 rsort($disck);
 switch ($disck) {
@@ -1372,7 +1369,6 @@ switch ($disck) {
 }
 
 $discttl = array($ttllD, $ttllI, $ttllS, $ttllC);
-//print_r($discp);
 $discttl = array_filter($discttl, function($p) { return $p > 0; });
 rsort($discttl);
 switch ($discttl) {
