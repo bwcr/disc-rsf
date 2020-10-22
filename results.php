@@ -146,7 +146,7 @@ else{
 			<tbody>
 				<th>
 					<td>Nama: <?= $nama ?></td>
-					<td>Usia: <?= $usia ?> t</td>
+					<td>Usia: <?= $usia ?> th</td>
 					<td>Jenis Kelamin: <?= $jk ?></td>
 					<td>Email: <?= $email ?></td>
 				</th>

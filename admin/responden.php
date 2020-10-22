@@ -51,8 +51,8 @@
               <td><?= $rowresponden['jk'] ?></td>
               <td><?= $rowresponden[4] ?></td>
               <td><?= $rowresponden['tanggal'] ?></td>
-              <td><form method="POST" action="../results.php?id='.md5($rowresponden['id']).'"><input type="hidden" name="validate"><input type="hidden" name="src" value="admin"><button type="submit" class="mdc-button mdc-button--unelevated" data-mdc-auto-init="MDCRipple"><i class="fas fa-external-link-alt"></i></button></form>
-              <a href="../delete.php?id='.md5($rowresponden['id']).'" class="deleteResponden" id="deleteResponden"><button style="margin-right: 0.2em;" class="mdc-button mdc-button--unelevated secondary-filled-button" data-mdc-auto-init="MDCRipple"><i class="fas fa-trash"></i></button></a>
+              <td><form method="POST" action="../results.php?id=<?= md5($rowresponden['id']) ?>"><input type="hidden" name="validate"><input type="hidden" name="src" value="admin"><button type="submit" class="mdc-button mdc-button--unelevated" data-mdc-auto-init="MDCRipple"><i class="fas fa-external-link-alt"></i></button></form>
+              <a href="../delete.php?id=<?= md5($rowresponden['id']) ?>" class="deleteResponden" id="deleteResponden"><button style="margin-right: 0.2em;" class="mdc-button mdc-button--unelevated secondary-filled-button" data-mdc-auto-init="MDCRipple"><i class="fas fa-trash"></i></button></a>
               </td>
               </tr>
             <?php

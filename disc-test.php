@@ -132,27 +132,24 @@ elseif(isset($_GET['id']) && !isset($_POST[''])){
 			for ($i = 1; $i < 25; $i++) {
 				?>
 				//Button Kanan
-				$(".soal-<?= $i ?>' tr:nth-child(2) > td:nth-child(2) > label > input").click(function () {
-					$(".soal-<?= $i ?>' tr:nth-child(2) > td:first-child > label > input").prop("checked", false);
+				$(".soal-<?= $i ?> tr:nth-child(2) > td:nth-child(2) > label > input").click(function () {
+					$(".soal-<?= $i ?> tr:nth-child(2) > td:first-child > label > input").prop("checked", false);
 				});
-				$(".soal-<?= $i ?>' tr:nth-child(3) > td:nth-child(2) > label > input").click(function () {
-					$(".soal-<?= $i ?>' tr:nth-child(3) > td:first-child > label > input").prop("checked",
-						false);
+				$(".soal-<?= $i ?> tr:nth-child(3) > td:nth-child(2) > label > input").click(function () {
+					$(".soal-<?= $i ?> tr:nth-child(3) > td:first-child > label > input").prop("checked", false);
 				});
-				$(".soal-<?= $i ?>' tr:nth-child(4) > td:nth-child(2) > label > input").click(function () {
-					$(".soal-<?= $i ?>' tr:nth-child(4) > td:first-child > label > input").prop("checked",
-						false);
+				$(".soal-<?= $i ?> tr:nth-child(4) > td:nth-child(2) > label > input").click(function () {
+					$(".soal-<?= $i ?> tr:nth-child(4) > td:first-child > label > input").prop("checked", false);
 				});
-				$(".soal-<?= $i ?>' tr:nth-child(5) > td:nth-child(2) > label > input").click(function () {
-					$(".soal-<?= $i ?>' tr:nth-child(5) > td:first-child > label > input").prop("checked", false);
+				$(".soal-<?= $i ?> tr:nth-child(5) > td:nth-child(2) > label > input").click(function () {
+					$(".soal-<?= $i ?> tr:nth-child(5) > td:first-child > label > input").prop("checked", false);
 				});
 				//Button Kiri
 				<?php
 				for ($j = 2; $j < 6; $j++) {
 					?>
-					$(".soal-'.$i.' tr:nth-child(<?= $j ?>) > td:first-child > label > input").click(function () {
-						$(".soal-'.$i.' tr:nth-child(<?= $j ?>) > td:nth-child(2) > label > input").prop(
-							"checked", false);
+					$(".soal-<?= $i ?> tr:nth-child(<?= $j ?>) > td:first-child > label > input").click(function () {
+						$(".soal-<?= $i ?> tr:nth-child(<?= $j ?>) > td:nth-child(2) > label > input").prop( "checked", false);
 					}); <?php
 				}
 			}; ?>
