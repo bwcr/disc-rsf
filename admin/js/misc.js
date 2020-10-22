@@ -16,24 +16,20 @@
     var current = location.pathname.split("/").slice(-1)[0].replace(/^\/|\/$/g, "");
     $(".mdc-drawer-item .mdc-drawer-link", sidebar).each(function() {
       var $this = $(this);
-      if (current === "") {
+      if (current === "" && current.attr("href").indexOf("index.html") !== -1) {
         //for root url
-        if ($this.attr("href").indexOf("index.html") !== -1) {
-          $(this).addClass("active");
-          if ($(this).parents(".mdc-expansion-panel").length) {
-            $(this).closest(".mdc-expansion-panel").addClass("expanded");
-          }
+        $(this).addClass("active");
+        if ($(this).parents(".mdc-expansion-panel").length) {
+          $(this).closest(".mdc-expansion-panel").addClass("expanded");
         }
-      } else {
+      } else if ($this.attr("href").indexOf(current) !== -1) {
         //for other url
-        if ($this.attr("href").indexOf(current) !== -1) {
-          $(this).addClass("active");
-          if ($(this).parents(".mdc-expansion-panel").length) {
-            $(this).closest(".mdc-expansion-panel").addClass("expanded");
-          }
+        $(this).addClass("active");
+        if ($(this).parents(".mdc-expansion-panel").length) {
+          $(this).closest(".mdc-expansion-panel").addClass("expanded");
         }
       }
-    })
+    });
 
     $(".mdc-toolbar__menu-icon").on("click", function(){
       $(".body-wrapper .page-wrapper .content-wrapper").toggleClass("drawer-minimized");
