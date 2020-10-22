@@ -102,17 +102,17 @@
                     while ($rowmitra = mysqli_fetch_array($mitra)) { ?>
                     <tr>
                       <?php $id_mitra = md5($rowmitra['id_mitra']); ?>
-                      <td><?= $i ?></td>
-                      <td><?= $rowmitra['mitra'] ?></td>
-                      <td><?= $rowmitra['username'] ?></td>
-                      <td><?= $rowmitra['email'] ?></td>
+                      <td><?= htmlentities($i) ?></td>
+                      <td><?= htmlentities($rowmitra['mitra']) ?></td>
+                      <td><?= htmlentities($rowmitra['username']) ?></td>
+                      <td><?= htmlentities($rowmitra['email']) ?></td>
                       <td><img style="max-width:200px;max-height:50px" class="shadow-sm"
-                          src="../image/logo/<?= $rowmitra["logo"] ?>"></td>
-                      <td><a rel="modal:open" id="toggleModal<?= $rowmitra["username"] ?>"
-                          href="#edit<?= $rowmitra["username"] ?>"><button class="mdc-button mdc-button--unelevated"
+                          src="../image/logo/<?= htmlentities($rowmitra["logo"]) ?>"></td>
+                      <td><a rel="modal:open" id="toggleModal<?= htmlentities($rowmitra["username"]) ?>"
+                          href="#edit<?= htmlentities($rowmitra["username"]) ?>"><button class="mdc-button mdc-button--unelevated"
                             data-mdc-auto-init="MDCRipple"><i class="fas fa-edit"></i></button></a>
-                        <a rel=modal:open id="toggleSubModalMitra<?= $rowmitra["username"] ?>"
-                          href="#sub-modalDelete<?= $rowmitra["username"] ?>"><button id="delete'.$rowmitra["
+                        <a rel=modal:open id="toggleSubModalMitra<?= htmlentities($rowmitra["username"]) ?>"
+                          href="#sub-modalDelete<?= htmlentities($rowmitra["username"]) ?>"><button id="delete'.$rowmitra["
                             username"].'"
                             class="mdc-button mdc-button--unelevated secondary-filled-button mdc-ripple-upgraded"
                             data-mdc-auto-init="MDCRipple">
@@ -121,7 +121,7 @@
                         </a></td>
                     </tr>
                     <?php $i = $i + 1; ?>
-                    <div id="edit<?= $rowmitra["username"] ?>" class="modal">
+                    <div id="edit<?= htmlentities($rowmitra["username"]) ?>" class="modal">
                       <div class="modal-header">
                         <h1 class="mdc-card__title mdc-card__title--large">Update Mitra</h1>
                       </div>
@@ -131,8 +131,8 @@
                             <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
                               <label class="mdc-text-field w-100">
                                 <h2 class="mdc-typography--subheading1">Nama Mitra</h2>
-                                <form id="formUpdateMitra" method="POST" action="updateMitra.php?id=<?= $id_mitra ?>">
-                                  <input type="text" name="mitra" value="<?= $rowmitra["mitra"] ?>" required="required"
+                                <form id="formUpdateMitra" method="POST" action="updateMitra.php?id=<?= htmlentities($id_mitra) ?>">
+                                  <input type="text" name="mitra" value="<?= htmlentities($rowmitra["mitra"]) ?>" required="required"
                                     class="mdc-text-field__input">
                                   <div class="mdc-text-field__bottom-line"></div>
                               </label>
@@ -140,7 +140,7 @@
                             <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
                               <label class="mdc-text-field w-100">
                                 <h2 class="mdc-typography--subheading1">Username</h2>
-                                <input type="text" name="username" value="<?= $rowmitra["username"] ?>"
+                                <input type="text" name="username" value="<?= htmlentities($rowmitra["username"]) ?>"
                                   required="required" class="mdc-text-field__input">
                                 <div class="mdc-text-field__bottom-line"></div>
                               </label>
@@ -148,7 +148,7 @@
                             <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                               <label class="mdc-text-field w-100">
                                 <h2 class="mdc-typography--subheading1">Email</h2>
-                                <input type="email" name="email" value="<?= $rowmitra["email"] ?>" required="required"
+                                <input type="email" name="email" value="<?= htmlentities($rowmitra["email"]) ?>" required="required"
                                   class="mdc-text-field__input">
                                 <div class="mdc-text-field__bottom-line"></div>
                               </label>
@@ -156,9 +156,9 @@
                             <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                               <label class="mdc-text-field w-100">
                                 <h2 class="mdc-typography--subheading1">Password</h2>
-                                <input id="password<?= $rowmitra["username"] ?>" type="password" name="password"
+                                <input id="password<?= htmlentities($rowmitra["username"]) ?>" type="password" name="password"
                                   placeholder="Password..." required="required" class="mdc-text-field__input w-100"
-                                  value="<?= $rowmitra["password"] ?>">
+                                  value="<?= htmlentities($rowmitra["password"]) ?>">
                                 <div class="mdc-text-field__bottom-line"></div>
                               </label>
                             </div>
@@ -169,24 +169,24 @@
                           Update
                         </button>
                         </form>
-                        <a rel=modal:open id="toggleSubModalMitra<?= $rowmitra["username"] ?>"
-                          href="#sub-modalDelete<?= $rowmitra["username"] ?>"><button id="delete<?= $rowmitra["
-                            username"] ?>" class="mdc-button mdc-button--stroked secondary-stroked-button"
+                        <a rel=modal:open id="toggleSubModalMitra<?= htmlentities($rowmitra["username"]) ?>"
+                          href="#sub-modalDelete<?= htmlentities($rowmitra["username"]) ?>"><button id="delete<?= htmlentities($rowmitra["
+                            username"]) ?>" class="mdc-button mdc-button--stroked secondary-stroked-button"
                             data-mdc-auto-init="MDCRipple">
                             Hapus
                           </button>
                         </a>
-                        <div id="sub-modalDelete<?= $rowmitra["username"] ?>" class="modal">
+                        <div id="sub-modalDelete<?= htmlentities($rowmitra["username"]) ?>" class="modal">
                           <section class="mdc-card__primary bg-white">
                             <div class="mdc-layout-grid">
                               <div class="mdc-layout-grid__inner">
                                 <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                                   <p class="mdc-typography--body1">Apakah anda ingin menghapus mitra
-                                    <?= $rowmitra["mitra"] ?></p>
+                                    <?= htmlentities($rowmitra["mitra"]) ?></p>
                                 </div>
                               </div>
-                              <a href="deleteMitra.php?id=<?= $id_mitra ?>"><button
-                                  id="delete<?= $rowmitra["username"] ?>"
+                              <a href="deleteMitra.php?id=<?= htmlentities($id_mitra) ?>"><button
+                                  id="delete<?= htmlentities($rowmitra["username"]) ?>"
                                   class="mdc-button mdc-button--stroked secondary-stroked-button"
                                   data-mdc-auto-init="MDCRipple">
                                   Hapus
@@ -221,11 +221,11 @@
     <div id="alertModal" class="modal">
       <?php 
           if (isset($_SESSION['alert-success'])) { ?>
-            <p><?= $_SESSION['alert-success'] ?></p>
+            <p><?= htmlentities($_SESSION['alert-success']) ?></p>
             <?php unset($_SESSION['alert-success']);
           }
           elseif (isset($_SESSION['alert-failure'])) { ?>
-            <p><?= $_SESSION['alert-failure'] ?></p>
+            <p><?= htmlentities($_SESSION['alert-failure']) ?></p>
             <?php unset($_SESSION['alert-failure']);
           }
           ?>
