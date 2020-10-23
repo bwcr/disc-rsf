@@ -33,7 +33,7 @@ if(isset($_GET['id'])){
 	}
 }
 
-elseif(isset($_GET['id']) && !isset($_POST[''])){
+if(isset($_GET['id']) && !isset($_POST[''])){
 	if (!isset($_SESSION['username']) || !isset($_SESSION['username_admin'])) {
 		$_SESSION['error_code'] = '40004';
 		header('Location: 404.php');
@@ -2047,14 +2047,14 @@ elseif(isset($_GET['id']) && !isset($_POST[''])){
 			<!-- <button type="submit">SUBMIT</button> -->
 	</div>
 	<?php
-if (isset($_POST) && !isset($_GET['id'])) { ?>
-	<input type="hidden" name="nama" value="<?= $_POST["namaDepan"] ?><?= $_POST["namaBelakang"] ?>">
-	<input type="hidden" name="usia" value="<?= $_POST["usia"] ?>">
-	<input type="hidden" name="gender" value="<?= $_POST["gender"] ?>">
-	<input type="hidden" name="email" value="<?= $_POST["email"] ?>">
+if (isset($_POST["usia"], $_POST['namaBelakang'], $_POST['namaDepan'], $_POST['gender'], $_POST['email']) && !isset($_GET['id'])) { ?>
+	<input type="hidden" name="nama" value="<?= FILTER_INPUT(INPUT_POST, "namaDepan") ?> <?= FILTER_INPUT(INPUT_POST, "namaBelakang") ?>">
+	<input type="hidden" name="usia" value="<?= FILTER_INPUT(INPUT_POST, "usia") ?>">
+	<input type="hidden" name="gender" value="<?= FILTER_INPUT(INPUT_POST, "gender") ?>">
+	<input type="hidden" name="email" value="<?= FILTER_INPUT(INPUT_POST, "email") ?>">
 	<?php
 	if(isset($_POST['id_mitra'])){ ?>
-		<input type="hidden" name="id_mitra" value="<?= $_POST["id_mitra"] ?>">
+		<input type="hidden" name="id_mitra" value="<?= FILTER_INPUT(INPUT_POST, "id_mitra") ?>">
 	<?php
 	}
 }

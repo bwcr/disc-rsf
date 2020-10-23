@@ -4,7 +4,6 @@ session_start();
 require_once 'connection.php';
 
 if (isset($_SESSION['username']) && $_SESSION['password'] || isset($_SESSION['username_admin']) && $_SESSION['password_admin']) {
-	// unset($_SESSION);
 	session_destroy();
 }
 

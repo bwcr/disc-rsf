@@ -1490,7 +1490,7 @@ if(isset($_POST)){
 			for ($num = 1; $num < 193 ; $num++) { 
 				$answer = 'answer-'.$num; 
 				$hiddenname = 'h-'.$num;
-				$hidden = $_POST[$hiddenname];
+				$hidden = FILTER_INPUT(INPUT_POST, $hiddenname);
 				$masuk = $koneksi->query("UPDATE `data_diri` SET `$answer` = '$hidden' WHERE id = '$last_id'");
 			}
 			$_SESSION['validate'] = 1;
@@ -1921,7 +1921,7 @@ if(isset($_POST)){
 			$body .= 'Review</p>';
 			$body .= '<h2 class="content-title" style="font-weight: bold; font-family: Rubik,sans-serif; color: #000; font-size: 45px; letter-spacing: 3px; line-height: 1; margin: 0 auto 30px; max-width: 500px; text-transform: uppercase;">';
 			$body .= 'DISC Test</h2>';
-			$body .= '<h3 class="content-subtitle" style="font-weight: bold; font-family: Rubik,sans-serif; color: #000; display: block; font-size: 22px; line-height: 1; margin: 0 0 20px; position: relative; text-transform: uppercase;">'.$_POST["nama"].'</h3>';
+			$body .= '<h3 class="content-subtitle" style="font-weight: bold; font-family: Rubik,sans-serif; color: #000; display: block; font-size: 22px; line-height: 1; margin: 0 0 20px; position: relative; text-transform: uppercase;">'.FILTER_INPUT(INPUT_POST, "nama").'</h3>';
 			$body .= '<p class="text-justify">Terimakasih telah melakukan DISC Test pada Griya Psikologi RSF. Anda dapat melihat kembali hasil DISC Test anda disini.</p>';
 			// $body .= '<p class="text-justify">Mohon dapat melakukan ganti password setelah anda login ke akun tersebut</p>';
 			$body .= '<a href="https://disc.griyapsikologi.com/results.php?id='.md5($last_id).'" style="color: #aaa; text-decoration: none; transition: ease .3s; -webkit-transition: ease .3s; -moz-transition: ease .3s; -o-transition: ease .3s; -ms-transition: ease .3s;"><button style="max-width: 100%; background: #e3451e none repeat scroll 0 0; border: 2px solid #e3451e; color: #fff; display: inline-block; font-family: rubik; font-weight: 500; letter-spacing: 4px; line-height: 1; padding: 14px 30px; text-transform: uppercase; width: auto; transition: ease .3s;">Lihat Disini</button></a>';
@@ -1939,7 +1939,7 @@ if(isset($_POST)){
 			for ($num = 1; $num < 193 ; $num++) { 
 				$answer = 'answer-'.$num; 
 				$hiddenname = 'h-'.$num;
-				$hidden = $_POST[$hiddenname];
+				$hidden = FILTER_INPUT(INPUT_POST, $hiddenname);
 				$masuk = $koneksi->query("UPDATE `data_diri` SET `$answer` = '$hidden' WHERE id = '$last_id'");
 			}
 			$_SESSION['validate'] = 1;

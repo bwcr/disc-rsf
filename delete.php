@@ -6,7 +6,7 @@ if(isset($_GET['id'])){
 	$id = FILTER_INPUT(INPUT_GET, 'id');
 }
 
-elseif(isset($_SESSION['username_admin'])){
+if(isset($_SESSION['username_admin'])){
 	$delete = $koneksi->query("DELETE FROM `data_diri` WHERE md5(`id`) = '$id'");
 	header("Location: admin/responden.php");
 }

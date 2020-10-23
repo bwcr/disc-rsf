@@ -17,10 +17,9 @@ if(isset($_POST['username']) && isset($_POST['password'])){
 		$_SESSION['password_admin'] = $row['password'];
 		$_SESSION['email'] = $row['email'];
 		header("Location: admin/dashboard.php");
-		
 	}
 
-	if(($select->num_rows) === 0){
+	elseif(($select->num_rows) === 0){
 		$select = $koneksi->query("SELECT * FROM `mitra` WHERE `username` = '$username' AND `password` = '$password'");
 		$row = mysqli_fetch_array($select);
 		if(($select->num_rows) === 1){
@@ -31,20 +30,16 @@ if(isset($_POST['username']) && isset($_POST['password'])){
 			$_SESSION['mitra'] = $row['mitra'];
 			$_SESSION['logo'] = $row['logo'];
 			header("Location: mitra/responden.php");
-			
-
 		}
 		elseif(($select->num_rows) === 0){
 			$_SESSION['alert-warning'] = "<strong>Username</strong> atau <strong>Password</strong> yang anda masukkan salah.";
 			header("Location: admin.php");
-			
 		}
 	}
 
 	else{
 		$_SESSION['alert-warning'] = "Terjadi kesalahan, coba lagi";
 		header("Location: admin.php");
-		
 	}
 }
 
