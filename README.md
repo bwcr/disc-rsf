@@ -2,7 +2,9 @@
 
 Tes DISC dikembangkan untuk Lembaga Psikologi dan Psikometri RSF, Grobogan
 
-Program ini tidak menggunakan framework PHP apapun. Hanya native PHP.
+Program ini dibuat untuk memenuhi Program Kerja Lapangan di Lembaga Psikologi dan Psikometri RSF, Grobogan
+
+Program DISC Test ini tidak menggunakan framework PHP apapun. Hanya native PHP.
 
 ## Fitur
 
